@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    font-family: "Source Sans Pro", sans-serif;
+  }
+  .bar {
+    display: flex;
+    align-items: center;
+    background-color: #262730;
+    border: 1px solid #3d3d4d;
+    border-radius: 24px;
+    padding: 6px 8px 6px 16px;
+    gap: 6px;
+  }
+  .bar input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fafafa;
+    font-size: 15px;
+  }
+  .bar input::placeholder {
+    color: #808495;
+  }
+  .icon-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: #fafafa;
+    transition: background-color 0.15s;
+    flex-shrink: 0;
+  }
+  .icon-btn:hover {
+    background-color: #3d3d4d;
+  }
+  .icon-btn.recording {
+    background-color: #ff4b4b;
+    animation: pulse 1.2s infinite;
+  }
+  .icon-btn.send {
+    background-color: #ff4b4b;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 75, 75, 0.5); }
+    70% { box-shadow: 0 0 0 8px rgba(255, 75, 75, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 75, 75, 0); }
+  }
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <button id="cameraBtn" class="icon-btn" title="Upload a prescription or medication photo">📷</button>
+  <input id="fileInput" type="file" accept="image/*" capture="environment" style="display:none" />
+  <input id="textInput" type="text" placeholder="Ask Tiryak..." />
+  <button id="micBtn" class="icon-btn" title="Record a question">🎤</button>
+  <button id="sendBtn" class="icon-btn send" title="Send">➤</button>
+</div>
+
+<script>
+  // --- Manual Streamlit Components protocol (no build tools needed) ---
+  function sendToStreamlit(type, data) {
+    const outData = Object.assign({ isStreamlitMessage: true, type: type }, data);
+    window.parent.postMessage(outData, "*");
+  }
+
+  function setFrameHeight() {
+    sendToStreamlit("streamlit:setFrameHeight", { height: 60 });
+  }
+
+  function setValue(value) {
+    sendToStreamlit("streamlit:setComponentValue", { value: value });
+  }
+
+  window.addEventListener("message", (event) => {
+    if (event.data.type === "streamlit:render") {
+      // placeholder for future args
+    }
+  });
+
+  sendToStreamlit("streamlit:componentReady", { apiVersion: 1 });
+  setFrameHeight();
+
+  // --- Text submission ---
+  const textInput = document.getElementById("textInput");
+  const sendBtn = document.getElementById("sendBtn");
+
+  function submitText() {
+    const text = textInput.value.trim();
+    if (text.length === 0) return;
+    setValue({ type: "text", value: text, id: Date.now() + Math.random() });
+    textInput.value = "";
+  }
+
+  sendBtn.addEventListener("click", submitText);
+  textInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") submitText();
+  });
+
+  // --- Voice recording ---
+  const micBtn = document.getElementById("micBtn");
+  let mediaRecorder = null;
+  let audioChunks = [];
+  let isRecording = false;
+
+  micBtn.addEventListener("click", async () => {
+    if (!isRecording) {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        mediaRecorder = new MediaRecorder(stream);
+        audioChunks = [];
+
+        mediaRecorder.ondataavailable = (e) => audioChunks.push(e.data);
+
+        mediaRecorder.onstop = () => {
+          const audioBlob = new Blob(audioChunks, { type: "audio/webm" });
+          const reader = new FileReader();
+          reader.onloadend = () => {
+            const base64data = reader.result.split(",")[1];
+            setValue({ type: "audio", value: base64data, id: Date.now() + Math.random() });
+          };
+          reader.readAsDataURL(audioBlob);
+          stream.getTracks().forEach((track) => track.stop());
+        };
+
+        mediaRecorder.start();
+        isRecording = true;
+        micBtn.classList.add("recording");
+      } catch (err) {
+        alert("Microphone access was denied or is unavailable.");
+      }
+    } else {
+      mediaRecorder.stop();
+      isRecording = false;
+      micBtn.classList.remove("recording");
+    }
+  });
+
+  // --- Image upload (prescription / medication photo) ---
+  const cameraBtn = document.getElementById("cameraBtn");
+  const fileInput = document.getElementById("fileInput");
+
+  cameraBtn.addEventListener("click", () => {
+    fileInput.click();
+  });
+
+  fileInput.addEventListener("change", () => {
+    const file = fileInput.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const base64data = reader.result.split(",")[1];
+      setValue({
+        type: "image",
+        value: base64data,
+        mime_type: file.type || "image/jpeg",
+        id: Date.now() + Math.random()
+      });
+    };
+    reader.readAsDataURL(file);
+    fileInput.value = "";
+  });
+</script>
+
+</body>
+</html>

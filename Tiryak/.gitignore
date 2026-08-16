@@ -1,0 +1,27 @@
+# Virtual environment
+venv/
+
+# Environment variables (NEVER commit API keys)
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Data & uploads (generated at runtime, shouldn't be in version control)
+data/uploads/*
+data/chroma_db/*
+!data/uploads/.gitkeep
+!data/chroma_db/.gitkeep
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

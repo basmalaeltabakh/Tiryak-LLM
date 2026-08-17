@@ -7,9 +7,17 @@ from app.rag.language_utils import detect_language
 def build_context_prompt(query: str, chunks: List[Dict], user_type: str = "pharmacist") -> str:
     context_blocks = []
     for i, chunk in enumerate(chunks, start=1):
-        context_blocks.append(
-            f"[Source {i} - Document: {chunk['filename']}, Page {chunk['page_number']}]\n{chunk['text']}"
-        )
+        source_label = f"Document: {chunk['filename']}, Page {chunk['page_number']}"
+        # Extra structure available on section-aware-parsed documents — helps
+        # the model understand which disease/section a chunk covers; absent
+        # (and silently skipped) for documents that don't set these fields.
+        if chunk.get("disease_name"):
+            source_label += f", Topic: {chunk['disease_name']}"
+        elif chunk.get("topic_name"):
+            source_label += f", Topic: {chunk['topic_name']}"
+        if chunk.get("section_title"):
+            source_label += f", Section: {chunk['section_title']}"
+        context_blocks.append(f"[Source {i} - {source_label}]\n{chunk['text']}")
     context_text = "\n\n".join(context_blocks)
 
     num_unique_docs = len(set(c["filename"] for c in chunks))

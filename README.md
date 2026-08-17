@@ -63,7 +63,7 @@ FastAPI Backend
 |---|---|
 | Backend | FastAPI, Python 3.13 |
 | Vector Database | ChromaDB |
-| Embeddings | sentence-transformers (`paraphrase-multilingual-mpnet-base-v2`) |
+| Embeddings | sentence-transformers (`intfloat/multilingual-e5-base`) |
 | LLMs | Google Gemini, Groq (Llama 3.3 70B) |
 | Speech-to-Text | Groq-hosted Whisper (`whisper-large-v3`) |
 | Text-to-Speech | gTTS |

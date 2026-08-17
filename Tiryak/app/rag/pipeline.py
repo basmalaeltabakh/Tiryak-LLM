@@ -51,7 +51,13 @@ def answer_question_safely(
             "filename": c["filename"],
             "page_number": c["page_number"],
             "text_snippet": c["text"][:300] + ("..." if len(c["text"]) > 300 else ""),
-            "similarity_distance": round(c["distance"], 4)
+            "similarity_distance": round(c["distance"], 4),
+            # Present only for documents whose parser tags chunks with these
+            # (all three section-aware parsers now do); omitted otherwise.
+            **({"section_title": c["section_title"]} if c.get("section_title") else {}),
+            **({"disease_name": c["disease_name"]} if c.get("disease_name") else {}),
+            **({"category": c["category"]} if c.get("category") else {}),
+            **({"source_url": c["source_url"]} if c.get("source_url") else {}),
         }
         for c in chunks
     ]

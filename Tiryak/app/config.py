@@ -37,10 +37,10 @@ CHUNK_OVERLAP_TOKENS = 40   # ~10% of CHUNK_TARGET_TOKENS, used when a section m
 CHUNK_DROP_TOKENS = 80      # chunks smaller than this are extraction noise, dropped before storage
 
 # Gemini model
-GEMINI_MODEL_NAME = "gemini-3-flash-preview"
+GEMINI_MODEL_NAME = "gemini-3.6-flash"
 
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
-GROQ_MODEL_NAME = "llama-3.3-70b-versatile"
+GROQ_MODEL_NAME = "openai/gpt-oss-20b"
 
 # Vector DB collection name
 COLLECTION_NAME = "faheem_documents"

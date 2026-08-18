@@ -1,3 +1,4 @@
+import logging
 from fastapi import APIRouter, UploadFile, File
 
 from app.advanced.image_reader import extract_medication_names_from_image
@@ -5,6 +6,7 @@ from app.advanced.drug_lookup import lookup_multiple_drugs
 from app.rag.pipeline import answer_question_safely
 
 router = APIRouter()
+logger = logging.getLogger("tiryak.prescription")
 
 
 def _build_identity_summary_ar(drug_infos: list) -> str:
@@ -49,8 +51,10 @@ async def read_prescription_image(
     """
     image_bytes = await file.read()
     mime_type = file.content_type or "image/jpeg"
+    logger.info(f"prescription/read: received {file.filename!r}, {len(image_bytes)} bytes, mime={mime_type}")
 
     extraction = extract_medication_names_from_image(image_bytes, mime_type=mime_type)
+    logger.info(f"prescription/read: Gemini extraction result = {extraction}")
     names = extraction.get("clearly_read_names", [])
 
     if not names:

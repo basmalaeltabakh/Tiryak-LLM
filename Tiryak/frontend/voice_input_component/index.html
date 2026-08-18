@@ -11,8 +11,8 @@
   .bar {
     display: flex;
     align-items: center;
-    background-color: #262730;
-    border: 1px solid #3d3d4d;
+    background-color: #1E2128;
+    border: 1px solid #2D3139;
     border-radius: 24px;
     padding: 6px 8px 6px 16px;
     gap: 6px;
@@ -22,11 +22,13 @@
     background: transparent;
     border: none;
     outline: none;
-    color: #fafafa;
+    color: #E6E8EB;
     font-size: 15px;
+    text-align: right;
+    direction: rtl;
   }
   .bar input::placeholder {
-    color: #808495;
+    color: #6B7280;
   }
   .icon-btn {
     background-color: transparent;
@@ -39,24 +41,24 @@
     align-items: center;
     justify-content: center;
     font-size: 16px;
-    color: #fafafa;
+    color: #E6E8EB;
     transition: background-color 0.15s;
     flex-shrink: 0;
   }
   .icon-btn:hover {
-    background-color: #3d3d4d;
+    background-color: #2D3139;
   }
   .icon-btn.recording {
-    background-color: #ff4b4b;
+    background-color: #C1392B;
     animation: pulse 1.2s infinite;
   }
   .icon-btn.send {
-    background-color: #ff4b4b;
+    background-color: #2563EB;
   }
   @keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(255, 75, 75, 0.5); }
-    70% { box-shadow: 0 0 0 8px rgba(255, 75, 75, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(255, 75, 75, 0); }
+    0% { box-shadow: 0 0 0 0 rgba(193, 57, 43, 0.5); }
+    70% { box-shadow: 0 0 0 8px rgba(193, 57, 43, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(193, 57, 43, 0); }
   }
 </style>
 </head>
@@ -65,7 +67,7 @@
 <div class="bar">
   <button id="cameraBtn" class="icon-btn" title="Upload a prescription or medication photo">📷</button>
   <input id="fileInput" type="file" accept="image/*" capture="environment" style="display:none" />
-  <input id="textInput" type="text" placeholder="Ask Tiryak..." />
+  <input id="textInput" type="text" placeholder="اسأل عن أي دوا..." />
   <button id="micBtn" class="icon-btn" title="Record a question">🎤</button>
   <button id="sendBtn" class="icon-btn send" title="Send">➤</button>
 </div>

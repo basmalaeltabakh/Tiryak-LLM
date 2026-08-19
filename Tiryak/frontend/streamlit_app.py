@@ -51,6 +51,14 @@ COLORS = {
     "neutral": "#6B7280",
     "neutral_soft": "#EEF0F2",
     "user_bubble": "#1B2A4A",
+    # Dark emerald sidebar — a separate, self-contained palette so the
+    # sidebar can read as a distinct panel against the light main area
+    # without touching any of the tokens the rest of the app relies on.
+    "sidebar_bg": "#0E3D2C",
+    "sidebar_border": "rgba(255,255,255,0.10)",
+    "sidebar_text_soft": "rgba(255,255,255,0.68)",
+    "sidebar_text_faint": "rgba(255,255,255,0.48)",
+    "sidebar_hover": "rgba(255,255,255,0.08)",
 }
 C = COLORS
 
@@ -118,21 +126,25 @@ st.markdown(f"""
     .stButton > button, .stFormSubmitButton > button {{ font-size: 15px !important; }}
     .stButton > button p, .stFormSubmitButton > button p {{ font-size: 15px !important; }}
 
-    /* ─── Sidebar: fixed width, clean surface ─── */
+    /* ─── Sidebar: fixed width, dark emerald panel distinct from the
+    light main area ─── */
     section[data-testid="stSidebar"] {{
-        background: {C["surface"]} !important;
+        background: {C["sidebar_bg"]} !important;
         min-width: 292px !important; max-width: 292px !important; width: 292px !important;
-        border-right: 1px solid {C["border"]};
+        border-right: 1px solid {C["sidebar_border"]};
     }}
     section[data-testid="stSidebar"] > div {{ width: 292px !important; }}
     [data-testid="stSidebarResizeHandle"] {{ display: none !important; }}
-    section[data-testid="stSidebar"] * {{ color: {C["ink"]}; }}
-    section[data-testid="stSidebar"] .stCaption, section[data-testid="stSidebar"] small {{ color: {C["ink_soft"]} !important; }}
+    section[data-testid="stSidebar"] * {{ color: #FFFFFF; }}
+    section[data-testid="stSidebar"] .stCaption, section[data-testid="stSidebar"] small {{ color: {C["sidebar_text_soft"]} !important; }}
     section[data-testid="stSidebar"] [data-testid="stVerticalBlockBorderWrapper"] > div > div {{ padding: 28px 20px 16px !important; }}
 
-    /* ─── Brand / logo area ─── */
-    .tk-brand-name {{ font-weight: 700; color: {C["ink"]}; font-size: 26px; letter-spacing: -0.02em; line-height: 1.15; margin-top: 8px; }}
-    .tk-brand-tag {{ font-size: 14px; color: {C["ink_soft"]}; font-weight: 500; margin-top: 2px; }}
+    /* ─── Brand / logo area: plain logo, no card/plate behind it — just
+    centered on the dark panel. ─── */
+    .tk-brand-name {{ font-weight: 700; color: #FFFFFF; font-size: 26px; letter-spacing: -0.02em; line-height: 1.15; margin-top: 8px; }}
+    .tk-brand-tag {{ font-size: 14px; color: {C["sidebar_text_soft"]}; font-weight: 500; margin-top: 2px; }}
+    section[data-testid="stSidebar"] [data-testid="stImage"] {{ display: flex; justify-content: center; margin: 4px 0 6px; }}
+    section[data-testid="stSidebar"] [data-testid="stImage"] img {{ margin: 0 auto; }}
 
     /* ─── Section labels: real headings, not disabled-looking tags ─── */
     .tk-eyebrow {{
@@ -156,6 +168,15 @@ st.markdown(f"""
         background: {C["primary"]}; color: #fff !important;
     }}
     div[data-testid="stRadio"] label[data-selected="true"] p {{ color: #fff !important; }}
+    /* Sidebar-only override for the language switcher — same segmented
+    shape, recolored for the dark panel so its inactive segment doesn't
+    render as an invisible light-gray-on-dark-green track. */
+    section[data-testid="stSidebar"] div[data-testid="stRadio"] > div[role="radiogroup"] {{
+        background: {C["sidebar_hover"]}; border: 1px solid {C["sidebar_border"]};
+    }}
+    section[data-testid="stSidebar"] div[data-testid="stRadio"] label {{ color: {C["sidebar_text_soft"]} !important; }}
+    section[data-testid="stSidebar"] div[data-testid="stRadio"] label p {{ color: inherit !important; }}
+    section[data-testid="stSidebar"] div[data-testid="stRadio"] label[data-selected="true"] {{ color: #fff !important; }}
 
     /* ─── Form inputs: consistent, soft, premium ─── */
     div[data-testid="stNumberInputContainer"], div[data-testid="stTextInputRootElement"],
@@ -318,24 +339,34 @@ st.markdown(f"""
         display: flex !important; align-items: center !important; gap: 14px !important;
     }}
     section[data-testid="stSidebar"] .stButton > button:hover {{
-        background: {C["surface_sunken"]} !important; box-shadow: none !important; color: {C["ink"]} !important;
+        background: {C["sidebar_hover"]} !important; box-shadow: none !important; color: #FFFFFF !important;
     }}
     section[data-testid="stSidebar"] .stButton > button p {{ text-align: left !important; letter-spacing: 0.01em; font-size: 16px !important; }}
     section[data-testid="stSidebar"] .stButton [data-testid="stIconMaterial"] {{ font-size: 22px !important; }}
+    /* Streamlit wraps a button's icon+label in its own inner flex div/span
+    (unrelated to our classes) that centers its content by default — the
+    outer `button`'s own justify-content above has no room left to do
+    anything, since that inner wrapper already fills the button's full
+    width. Overriding it directly is what actually left/right-aligns the
+    icon+label pair; the RTL block below overrides both again. */
+    section[data-testid="stSidebar"] .stButton > button > div {{
+        justify-content: flex-start !important; width: 100% !important;
+    }}
     /* Anchor a quiet footer mark at the bottom so the nav's empty space
     below it reads as intentional breathing room, not an unfinished layout */
     section[data-testid="stSidebar"] [data-testid="stVerticalBlockBorderWrapper"] > div > div {{
         display: flex !important; flex-direction: column !important; min-height: calc(100vh - 44px) !important;
     }}
-    .tk-sidebar-footer {{ margin-top: auto; padding-top: 20px; border-top: 1px solid {C["border"]}; font-size: 13px; color: {C["ink_faint"]}; }}
-    /* Active nav item — targeted via Streamlit's real st-key-<key> class, not a manual div wrap */
+    .tk-sidebar-footer {{ margin-top: auto; padding-top: 20px; border-top: 1px solid {C["sidebar_border"]}; font-size: 13px; color: {C["sidebar_text_faint"]}; }}
+    /* Active nav item — targeted via Streamlit's real st-key-<key> class, not a
+    manual div wrap. Solid green pill fill (rather than the left-border accent
+    a light sidebar would use) so it reads clearly against the dark panel. */
     section[data-testid="stSidebar"] .st-key-nav_{st.session_state.active_view} > div > button {{
-        background: {C["primary_soft"]} !important; color: {C["primary_hover"]} !important;
-        border-left: 3px solid {C["primary"]} !important; border-radius: 0 10px 10px 0 !important;
-        padding-left: 13px !important;
+        background: {C["primary"]} !important; color: #FFFFFF !important;
+        border-radius: 12px !important;
     }}
     section[data-testid="stSidebar"] .st-key-nav_{st.session_state.active_view} > div > button p {{
-        color: {C["primary_hover"]} !important; font-weight: 700 !important;
+        color: #FFFFFF !important; font-weight: 700 !important;
     }}
 
     /* ─── Top bar: page title, 26-30px target ─── */
@@ -352,18 +383,41 @@ st.markdown(f"""
     }}
     .tk-dash-card-head {{ display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }}
     .tk-dash-card-title {{ font-size: 19px; font-weight: 600; color: {C["ink"]}; line-height: 1.3; }}
+    .tk-card-icon-badge {{
+        display: inline-flex; align-items: center; justify-content: center;
+        width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0;
+        background: {C["primary_soft"]}; color: {C["primary_hover"]}; font-size: 18px;
+    }}
+    /* Current-patient card CTAs — a filled accent pill instead of the
+    default neutral button, so the primary action in this card reads at
+    a glance (scoped to these two keys only, other buttons untouched). */
+    .st-key-add_patient_home button, .st-key-edit_patient_home button {{
+        background: {C["primary_soft"]} !important; color: {C["primary_hover"]} !important;
+        border: 1px solid transparent !important; border-radius: 999px !important;
+        padding: 8px 20px !important; min-height: 40px !important;
+    }}
+    .st-key-add_patient_home button:hover, .st-key-edit_patient_home button:hover {{
+        background: {C["primary"]} !important; color: #fff !important; border-color: transparent !important;
+    }}
+    .st-key-add_patient_home button p, .st-key-edit_patient_home button p {{ color: inherit !important; }}
 
-    /* ─── Hero: label → title (32-40px) → one-line description ─── */
-    .tk-hero-eyebrow {{ font-size: 15px; font-weight: 600; color: {C["ink_soft"]}; margin-bottom: 4px; }}
+    /* ─── Hero: label → title (32-40px) → one-line description. Eyebrow +
+    tagline carry the green accent so the accent color shows up in the
+    page's primary heading area, not just on buttons/badges. ─── */
+    .tk-hero-eyebrow {{ font-size: 15px; font-weight: 700; color: {C["primary_hover"]}; margin-bottom: 4px; }}
     .tk-hero-title {{ font-size: 36px; font-weight: 700; color: {C["ink"]}; letter-spacing: -0.02em; margin-bottom: 10px; line-height: 1.2; }}
-    .tk-hero-tagline {{ color: {C["ink_faint"]}; font-size: 14px; font-weight: 500; margin-bottom: 8px; }}
+    .tk-hero-tagline {{ color: {C["primary_hover"]}; font-size: 14px; font-weight: 600; margin-bottom: 8px; }}
     .tk-hero-sub {{ color: {C["ink_soft"]}; font-size: 17px; font-weight: 400; line-height: 1.5; }}
 
     .tk-patient-pill {{ display: inline-flex; align-items: center; gap: 6px; background: {C["surface_sunken"]}; border: 1px solid {C["border"]}; border-radius: 20px; padding: 6px 14px; font-size: 14px; font-weight: 500; color: {C["ink_soft"]}; margin: 2px 4px 2px 0; }}
     .tk-readiness-dot {{ display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }}
 
-    /* ─── Quick action cards: larger icon, bold title-as-button, roomier description ─── */
-    .tk-qa-icon {{ font-size: 34px; margin-bottom: 12px; line-height: 1; }}
+    /* ─── Quick action cards: icon-in-a-badge, bold title-as-button, roomier description ─── */
+    .tk-qa-icon {{
+        display: inline-flex; align-items: center; justify-content: center;
+        width: 48px; height: 48px; border-radius: 12px;
+        background: {C["primary_soft"]}; font-size: 22px; margin-bottom: 14px; line-height: 1;
+    }}
     .tk-qa-desc {{ font-size: 15px; color: {C["ink_soft"]}; margin-top: 10px; line-height: 1.4; }}
     .st-key-qa_ask button, .st-key-qa_scan button, .st-key-qa_upload button {{
         font-size: 19px !important; font-weight: 700 !important;
@@ -376,11 +430,14 @@ st.markdown(f"""
     }}
     .st-key-qa_ask button p, .st-key-qa_scan button p, .st-key-qa_upload button p {{ text-align: left !important; }}
     div[data-testid="stVerticalBlockBorderWrapper"]:has(.tk-qa-icon) {{
-        transition: transform 0.18s ease, box-shadow 0.18s ease;
+        border-radius: 16px !important;
+        transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
     }}
+    div[data-testid="stVerticalBlockBorderWrapper"]:has(.tk-qa-icon) > div {{ border-radius: 16px !important; }}
     div[data-testid="stVerticalBlockBorderWrapper"]:has(.tk-qa-icon):hover {{
         transform: translateY(-3px);
         box-shadow: 0 10px 24px rgba(15,27,51,0.12);
+        border-color: {C["primary"]} !important;
     }}
     </style>
 """, unsafe_allow_html=True)
@@ -504,6 +561,27 @@ TRANSLATIONS = {
         "summarizing": "Summarizing — large documents batch many LLM calls and can take a few minutes…",
         "extracting_insights": "Extracting entities & tables…",
         "failed_colon": "❌ Failed: {error}",
+
+        "tip_safe": "🛡️ This information is for support only and is not a substitute for a pharmacist's or doctor's advice.",
+        "tip_caution": "⚠️ This question relates to a specific condition — please confirm with a pharmacist or doctor before acting on it.",
+        "emergency_message": "Go to the nearest hospital now",
+        "emergency_call": "Call 123",
+        "emergency_footer": "This system does not answer emergency questions",
+        "insufficient_message": "No clear information was found in the evidence",
+        "image_uploaded_question": "📷 [Uploaded image]",
+        "image_no_legible_text": "Could not read a clear medication name from the image.",
+        "image_identified_medications": "📷 Identified medications: {names}",
+        "age_value": "Age {age}",
+        "medication_count": "{n} medication(s)",
+        "guideline_fallback_label": "Guideline",
+        "search_scope_input_label": "Limit search to",
+        "audience_toggle_label": "Audience",
+        "page_num": "p.{n}",
+        "match_score_label": "score {score}",
+        "mic_tooltip": "Record a question",
+        "camera_tooltip": "Upload a prescription or medication photo",
+        "send_tooltip": "Send",
+        "mic_denied_message": "Microphone access was denied or is unavailable.",
     },
     "ar": {
         "language_name": "العربية",
@@ -620,6 +698,27 @@ TRANSLATIONS = {
         "summarizing": "جارٍ التلخيص — المستندات الكبيرة تستدعي عدة طلبات ذكاء اصطناعي وقد تستغرق بضع دقائق…",
         "extracting_insights": "جارٍ استخراج الكيانات والجداول…",
         "failed_colon": "❌ فشل: {error}",
+
+        "tip_safe": "🛡️ المعلومة دي للمساعدة بس ومش بديل عن رأي الصيدلي أو الدكتور.",
+        "tip_caution": "⚠️ السؤال ده خاص بحالة معينة — يفضل تتأكد مع صيدلي أو دكتور قبل ما تتصرف بناءً عليه.",
+        "emergency_message": "روح أقرب مستشفى دلوقتي",
+        "emergency_call": "اتصل بـ ١٢٣",
+        "emergency_footer": "النظام مش بيجاوب على أسئلة الطوارئ",
+        "insufficient_message": "مفيش في الأدلة معلومة واضحة",
+        "image_uploaded_question": "📷 [صورة مرفوعة]",
+        "image_no_legible_text": "معرفتش أقرا اسم دوا واضح من الصورة.",
+        "image_identified_medications": "📷 الأدوية اللي اتعرفت: {names}",
+        "age_value": "العمر {age}",
+        "medication_count": "{n} دواء",
+        "guideline_fallback_label": "إرشاد",
+        "search_scope_input_label": "تحديد نطاق البحث",
+        "audience_toggle_label": "الفئة المستهدفة",
+        "page_num": "ص.{n}",
+        "match_score_label": "نسبة التطابق {score}",
+        "mic_tooltip": "تسجيل سؤال صوتي",
+        "camera_tooltip": "رفع صورة روشتة أو دواء",
+        "send_tooltip": "إرسال",
+        "mic_denied_message": "تم رفض الوصول للميكروفون أو أنه غير متاح.",
     },
 }
 
@@ -668,9 +767,19 @@ if is_rtl():
     row-reverse swaps their screen side without touching `direction`
     anywhere else, so nothing inside either child gets mirrored. */
     [data-testid="stAppViewContainer"] {{ flex-direction: row-reverse !important; }}
-    section[data-testid="stSidebar"] {{ border-right: none !important; border-left: 1px solid {C["border"]}; }}
+    section[data-testid="stSidebar"] {{ border-right: none !important; border-left: 1px solid {C["sidebar_border"]}; }}
 
-    /* 2) Right-align + RTL-shape standalone prose/heading text (not
+    /* 2) Top bar row only: the page title lives in a narrower left-hand
+    column (columns=[3,2]) sized for LTR reading order, so simply
+    right-aligning its text (below) stops short of the content area's true
+    right edge instead of lining up with the hero title / card titles under
+    it. Reversing just this one row — scoped via :has() so no other
+    multi-column layout in the app is touched — puts that column on the
+    physical right, where its right-aligned text meets the same edge as
+    the rest of the page's right-aligned content. */
+    div[data-testid="stHorizontalBlock"]:has(.tk-topbar-title) {{ flex-direction: row-reverse !important; }}
+
+    /* 3) Right-align + RTL-shape standalone prose/heading text (not
     buttons, not icons, not multi-item flex rows) so Arabic reads
     naturally without moving any icon, button, or card. */
     .tk-hero-eyebrow, .tk-hero-title, .tk-hero-tagline, .tk-hero-sub,
@@ -680,6 +789,29 @@ if is_rtl():
     [data-testid="stCaptionContainer"], [data-testid="stCaptionContainer"] p {{
         direction: rtl; text-align: right;
     }}
+
+    /* 4) Sidebar nav list specifically: the panel itself now sits on the
+    right (via #1 above), so its own nav items need their icon+label order
+    mirrored too, or the icon is left stranded on the panel's far edge
+    while the label hugs the opposite side — reading backwards for Arabic.
+    Streamlit nests the actual icon+label pair two levels inside the
+    button (button > div > span), each defaulting to `justify-content:
+    center` — overriding the outer `button` alone does nothing, since
+    that inner wrapper div already fills the button's full width by
+    itself, leaving the button's own justify-content no room to act.
+    Reversing both inner levels flips the icon to the panel's right edge
+    (where RTL reading starts) with the label immediately to its left,
+    and packs the pair against that same right edge instead of centering.
+    Scoped to just the sidebar's own buttons; other buttons/cards in the
+    app keep their fixed icon-left layout per the note above. */
+    section[data-testid="stSidebar"] .stButton > button {{ text-align: right !important; }}
+    section[data-testid="stSidebar"] .stButton > button > div {{
+        flex-direction: row-reverse !important; justify-content: flex-start !important;
+    }}
+    section[data-testid="stSidebar"] .stButton > button > div > span {{
+        flex-direction: row-reverse !important;
+    }}
+    section[data-testid="stSidebar"] .stButton > button p {{ text-align: right !important; }}
     </style>
     """, unsafe_allow_html=True)
 
@@ -729,7 +861,7 @@ def _flatten(fragment: str) -> str:
 
 def short_doc_label(filename: str) -> str:
     if not filename:
-        return "Guideline"
+        return t("guideline_fallback_label")
     if "HEARTS" in filename:
         return "WHO HEARTS"
     if "AWaRe" in filename:
@@ -781,11 +913,11 @@ def check_backend_health() -> bool:
 def patient_context_summary() -> str:
     parts = []
     if st.session_state.patient_age:
-        parts.append(f"Age {st.session_state.patient_age}")
+        parts.append(t("age_value", age=st.session_state.patient_age))
     if st.session_state.conditions:
-        parts.append(", ".join(st.session_state.conditions))
+        parts.append(", ".join(condition_label(c) for c in st.session_state.conditions))
     if st.session_state.medications:
-        parts.append(f"{len(st.session_state.medications)} medication(s)")
+        parts.append(t("medication_count", n=len(st.session_state.medications)))
     return " · ".join(parts)
 
 
@@ -797,10 +929,10 @@ def has_patient_context() -> bool:
 def render_answer_card(entry: dict, risk_level: str) -> str:
     if risk_level == "allowed":
         badge_label, badge_cls = t("badge_safe"), "badge-safe"
-        tip = "🛡️ المعلومة دي للمساعدة بس ومش بديل عن رأي الصيدلي أو الدكتور."
+        tip = t("tip_safe")
     else:
         badge_label, badge_cls = t("badge_caution"), "badge-caution"
-        tip = "⚠️ السؤال ده خاص بحالة معينة — يفضل تتأكد مع صيدلي أو دكتور قبل ما تتصرف بناءً عليه."
+        tip = t("tip_caution")
 
     conf = (entry.get("confidence") or {}).get("retrieval_confidence", "medium")
     conf_word = t(f"confidence_{str(conf).lower()}") if f"confidence_{str(conf).lower()}" in TRANSLATIONS["en"] else t("confidence_na")
@@ -835,23 +967,30 @@ def render_answer_card(entry: dict, risk_level: str) -> str:
 
 
 def render_emergency_card() -> str:
+    message = t("emergency_message")
+    call_label = t("emergency_call")
+    footer = t("emergency_footer")
+    message_dir = "rtl" if contains_arabic(message) else "ltr"
+    footer_dir = "rtl" if contains_arabic(footer) else "ltr"
     return _flatten(f'''
     <div class="tk-card">
       <span class="badge badge-emergency">{t("badge_emergency")}</span>
-      <div dir="rtl" class="tk-answer-text" style="margin-top:10px;">روح أقرب مستشفى دلوقتي</div>
+      <div dir="{message_dir}" class="tk-answer-text" style="margin-top:10px;">{message}</div>
       <div class="tk-emg-btns">
-        <a class="tk-emg-call" href="tel:123">اتصل بـ ١٢٣</a>
+        <a class="tk-emg-call" href="tel:123">{call_label}</a>
       </div>
-      <div dir="rtl" class="tk-emg-footer">النظام مش بيجاوب على أسئلة الطوارئ</div>
+      <div dir="{footer_dir}" class="tk-emg-footer">{footer}</div>
     </div>''')
 
 
 def render_insufficient_card() -> str:
     doc_count = len(st.session_state.documents) if st.session_state.documents else "—"
+    message = t("insufficient_message")
+    message_dir = "rtl" if contains_arabic(message) else "ltr"
     return _flatten(f'''
     <div class="tk-card">
       <span class="badge badge-insufficient">{t("badge_insufficient")}</span>
-      <div dir="rtl" class="tk-answer-text" style="margin-top:10px;">مفيش في الأدلة معلومة واضحة</div>
+      <div dir="{message_dir}" class="tk-answer-text" style="margin-top:10px;">{message}</div>
       <table class="tk-search-table">
         <tr><td>{t("table_documents")}</td><td>{t("table_indexed", n=doc_count)}</td></tr>
         <tr><td>{t("table_closest_match")}</td><td>{t("table_below_threshold")}</td></tr>
@@ -933,7 +1072,7 @@ def render_right_panel_prechat():
         doc_options = {doc["filename"]: doc["document_id"] for doc in st.session_state.documents}
         scoped_names = [name for name, did in doc_options.items() if did in st.session_state.document_scope]
         chosen = st.multiselect(
-            "Limit search to", options=list(doc_options.keys()), default=scoped_names,
+            t("search_scope_input_label"), options=list(doc_options.keys()), default=scoped_names,
             placeholder=t("search_scope_placeholder"), label_visibility="collapsed", format_func=short_doc_label,
             key="scope_prechat",
         )
@@ -976,10 +1115,10 @@ def render_right_panel_conversation():
                 distance = ev.get("similarity_distance", 1)
                 score = max(0.0, round(1 - distance, 2))
                 section = ev.get("section_title")
-                bits = [short_doc_label(ev.get("filename")), f"p.{ev.get('page_number', '?')}"]
+                bits = [short_doc_label(ev.get("filename")), t("page_num", n=ev.get('page_number', '?'))]
                 if section:
                     bits.append(f"§{esc(section)}")
-                bits.append(f"score {score}")
+                bits.append(t("match_score_label", score=score))
                 st.markdown(_flatten(f'''
                 <div class="tk-evidence-item">
                   <blockquote>&ldquo;{esc(ev.get("text_snippet", ""))}&rdquo;</blockquote>
@@ -993,7 +1132,7 @@ def render_right_panel_conversation():
             refs = sorted(set((s.get("filename"), s.get("page_number")) for s in sources))
             for filename, page in refs:
                 st.markdown(
-                    f'<div class="tk-evidence-item">📄 <b>{esc(short_doc_label(filename))}</b> — page {esc(page)}</div>',
+                    f'<div class="tk-evidence-item">📄 <b>{esc(short_doc_label(filename))}</b> — {t("page_num", n=esc(page))}</div>',
                     unsafe_allow_html=True
                 )
 
@@ -1054,7 +1193,7 @@ def render_right_panel_insights():
         if not tables:
             st.markdown(f'<div class="tk-panel-empty">{t("no_tabular_data")}</div>', unsafe_allow_html=True)
         for tbl in tables:
-            st.markdown(f"**{tbl.get('title') or t('table_fallback_title')}** (p.{tbl.get('page_number', '?')})")
+            st.markdown(f"**{tbl.get('title') or t('table_fallback_title')}** ({t('page_num', n=tbl.get('page_number', '?'))})")
             st.table([dict(zip(tbl.get("headers", []), row)) for row in tbl.get("rows", [])])
 
 
@@ -1151,9 +1290,9 @@ def handle_prescription_image(image_base64: str, mime_type: str) -> bool:
 
     if not names:
         st.session_state.chat_history.append({
-            "question": "📷 [صورة مرفوعة]",
+            "question": t("image_uploaded_question"),
             "image_b64": image_base64, "image_mime": mime_type,
-            "answer": data.get("message", "معرفتش أقرا اسم دوا واضح من الصورة."),
+            "answer": data.get("message", t("image_no_legible_text")),
             "sources": [], "confidence": {}, "provider_used": None,
             "safety": {"risk_level": "insufficient_evidence", "reasoning": "No medication name read from image."},
             "evidence_panel": []
@@ -1162,7 +1301,7 @@ def handle_prescription_image(image_base64: str, mime_type: str) -> bool:
         return True
 
     st.session_state.chat_history.append({
-        "question": f"📷 الأدوية اللي اتعرفت: {', '.join(names)}",
+        "question": t("image_identified_medications", names=", ".join(names)),
         "image_b64": image_base64, "image_mime": mime_type,
         "answer": data.get("answer") or "",
         "drug_matches": data.get("drug_database_matches", []),
@@ -1326,7 +1465,13 @@ def render_home_view():
                 st.rerun()
 
     with st.container(border=True):
-        st.markdown(f'<div class="tk-dash-card-title">{t("current_patient")}</div>', unsafe_allow_html=True)
+        st.markdown(
+            f'<div style="display:flex; align-items:center; gap:10px; margin-bottom:2px;">'
+            f'<span class="tk-card-icon-badge">👥</span>'
+            f'<div class="tk-dash-card-title" style="margin:0;">{t("current_patient")}</div>'
+            f'</div>',
+            unsafe_allow_html=True
+        )
         if has_patient_context():
             st.markdown(f'<span class="tk-patient-pill">{esc(patient_context_summary())}</span>', unsafe_allow_html=True)
             st.write("")
@@ -1475,17 +1620,10 @@ def render_chat_view():
 
 # ─── Sidebar: minimal nav + language switcher ───
 with st.sidebar:
-    logo_col, name_col = st.columns([2, 3])
-    with logo_col:
-        if LOGO_PATH:
-            st.image(LOGO_PATH, width=76)
-    with name_col:
-        st.markdown(
-            f'<div class="tk-brand-name">Tiryak</div><div class="tk-brand-tag">{t("brand_tag")}</div>',
-            unsafe_allow_html=True
-        )
+    if LOGO_PATH:
+        st.image(LOGO_PATH, width=172)
     st.markdown(
-        f'<div style="border-bottom:1px solid {C["border"]}; margin:18px 0 16px;"></div>',
+        f'<div style="border-bottom:1px solid {C["sidebar_border"]}; margin:16px 0 16px;"></div>',
         unsafe_allow_html=True
     )
 
@@ -1500,8 +1638,16 @@ with st.sidebar:
             st.session_state.active_view = view_key
             st.rerun()
 
+    # `index` is derived from the authoritative `language` app-state value
+    # (rather than relying solely on the widget's own `language_toggle` key)
+    # so the selection survives reruns triggered by other buttons — e.g. a
+    # sidebar nav click calls st.rerun() before this line ever runs in that
+    # pass, and without an explicit index Streamlit re-mounts this widget
+    # from scratch on the next pass, silently dropping back to English.
+    LANG_OPTIONS = ["en", "ar"]
     st.session_state.language = st.radio(
-        t("language_label"), options=["en", "ar"],
+        t("language_label"), options=LANG_OPTIONS,
+        index=LANG_OPTIONS.index(st.session_state.language),
         format_func=lambda code: TRANSLATIONS[code]["language_name"],
         label_visibility="collapsed", horizontal=True, key="language_toggle",
     )
@@ -1517,8 +1663,10 @@ top_left, top_right = st.columns([3, 2], vertical_alignment="center")
 with top_left:
     st.markdown(f'<span class="tk-topbar-title">{VIEW_TITLES[st.session_state.active_view]}</span>', unsafe_allow_html=True)
 with top_right:
+    AUDIENCE_OPTIONS = ["pharmacist", "patient"]
     st.session_state.user_type = st.radio(
-        "Audience", options=["pharmacist", "patient"],
+        t("audience_toggle_label"), options=AUDIENCE_OPTIONS,
+        index=AUDIENCE_OPTIONS.index(st.session_state.user_type),
         format_func=lambda x: t("audience_pharmacist") if x == "pharmacist" else t("audience_patient"),
         label_visibility="collapsed", horizontal=True, key="audience_toggle",
     )
@@ -1539,6 +1687,10 @@ if st.session_state.active_view in ("home", "chats"):
     result = voice_chat_input(
         key="unified_input",
         placeholder=t("chat_placeholder"),
+        camera_title=t("camera_tooltip"),
+        mic_title=t("mic_tooltip"),
+        send_title=t("send_tooltip"),
+        mic_denied_message=t("mic_denied_message"),
     )
 
     if result is not None and isinstance(result, dict):

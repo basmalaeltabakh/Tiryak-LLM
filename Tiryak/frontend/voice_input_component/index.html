@@ -18,6 +18,11 @@
     padding: 12px 14px 12px 24px;
     gap: 10px;
     box-shadow: 0 10px 32px rgba(15,27,51,0.14);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .bar:focus-within {
+    border-color: #22B573;
+    box-shadow: 0 10px 32px rgba(34,181,115,0.18), 0 0 0 3px rgba(34,181,115,0.12);
   }
   .bar input {
     flex: 1;
@@ -97,11 +102,17 @@
     sendToStreamlit("streamlit:setComponentValue", { value: value });
   }
 
+  let micDeniedMessage = "Microphone access was denied or is unavailable.";
+
   window.addEventListener("message", (event) => {
     if (event.data.type === "streamlit:render") {
       const args = event.data.args || {};
       const input = document.getElementById("textInput");
       if (args.placeholder) input.placeholder = args.placeholder;
+      if (args.camera_title) document.getElementById("cameraBtn").title = args.camera_title;
+      if (args.mic_title) document.getElementById("micBtn").title = args.mic_title;
+      if (args.send_title) document.getElementById("sendBtn").title = args.send_title;
+      if (args.mic_denied_message) micDeniedMessage = args.mic_denied_message;
       // Icon positions (camera / mic / send) stay fixed regardless of UI
       // language — only the text itself aligns to whatever script the user
       // is actually typing.
@@ -158,7 +169,7 @@
         isRecording = true;
         micBtn.classList.add("recording");
       } catch (err) {
-        alert("Microphone access was denied or is unavailable.");
+        alert(micDeniedMessage);
       }
     } else {
       mediaRecorder.stop();

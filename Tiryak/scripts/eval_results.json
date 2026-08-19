@@ -1,6 +1,6 @@
 {
-  "mean_p_at_3": 0.2745,
-  "mean_p_at_5": 0.2706,
+  "mean_p_at_3": 0.4314,
+  "mean_p_at_5": 0.3529,
   "questions_scored": 17,
   "questions_skipped": 3,
   "scored": [
@@ -9,7 +9,7 @@
       "category": "direct",
       "question": "What is the first-line antibiotic for pharyngitis?",
       "p_at_3": 0.3333,
-      "p_at_5": 0.2,
+      "p_at_5": 0.4,
       "top_document": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
       "top_similarity": 0.8826,
       "retrieved": [
@@ -23,6 +23,14 @@
         },
         {
           "rank": 2,
+          "similarity": 0.8626,
+          "document_name": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
+          "section_title": "Pharyngitis \u2014 Antibiotic Treatment - Second Choice",
+          "page_number": 16,
+          "relevant": false
+        },
+        {
+          "rank": 3,
           "similarity": 0.8625,
           "document_name": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
           "section_title": "Pharyngitis \u2014 Treatment - Antibiotic Treatment Duration",
@@ -30,27 +38,19 @@
           "relevant": false
         },
         {
-          "rank": 3,
-          "similarity": 0.8419,
-          "document_name": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
-          "section_title": "Acute bacterial osteomyelitis \u2014 Antibiotic Treatment - First Choice",
-          "page_number": 129,
-          "relevant": false
-        },
-        {
           "rank": 4,
-          "similarity": 0.841,
+          "similarity": 0.8513,
           "document_name": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
-          "section_title": "Acute sinusitis \u2014 Treatment - Antibiotic Treatment",
-          "page_number": 18,
-          "relevant": false
+          "section_title": "Pharyngitis \u2014 Overview",
+          "page_number": 14,
+          "relevant": true
         },
         {
           "rank": 5,
-          "similarity": 0.8403,
+          "similarity": 0.8424,
           "document_name": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
-          "section_title": "Acute diverticulitis \u2014 Antibiotic Treatment - First Choice",
-          "page_number": 118,
+          "section_title": "Bacterial meningitis \u2014 Antibiotic Treatment - First Choice",
+          "page_number": 91,
           "relevant": false
         }
       ]
@@ -74,22 +74,6 @@
         },
         {
           "rank": 2,
-          "similarity": 0.8639,
-          "document_name": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
-          "section_title": "Bronchitis \u2014 Treatment - No Antibiotic Care",
-          "page_number": 9,
-          "relevant": false
-        },
-        {
-          "rank": 3,
-          "similarity": 0.8539,
-          "document_name": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
-          "section_title": "Pharyngitis \u2014 Treatment - Antibiotic Treatment",
-          "page_number": 14,
-          "relevant": false
-        },
-        {
-          "rank": 4,
           "similarity": 0.8658,
           "document_name": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
           "section_title": "Exacerbation of chronic obstructive pulmonary disease \u2014 Treatment - No Antibiotic Care",
@@ -97,11 +81,27 @@
           "relevant": false
         },
         {
+          "rank": 3,
+          "similarity": 0.8639,
+          "document_name": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
+          "section_title": "Bronchitis \u2014 Treatment - No Antibiotic Care",
+          "page_number": 9,
+          "relevant": false
+        },
+        {
+          "rank": 4,
+          "similarity": 0.8602,
+          "document_name": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
+          "section_title": "Acute sinusitis \u2014 Treatment - Antibiotic Treatment",
+          "page_number": 18,
+          "relevant": false
+        },
+        {
           "rank": 5,
-          "similarity": 0.8488,
+          "similarity": 0.8574,
           "document_name": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
           "section_title": "Bacterial meningitis \u2014 Treatment - Clinical Considerations",
-          "page_number": 91,
+          "page_number": 93,
           "relevant": false
         }
       ]
@@ -110,21 +110,13 @@
       "id": "q03",
       "category": "direct",
       "question": "What is the first-line antibiotic treatment for gonococcal infection?",
-      "p_at_3": 0.3333,
-      "p_at_5": 0.2,
+      "p_at_3": 0.6667,
+      "p_at_5": 0.4,
       "top_document": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
-      "top_similarity": 0.8312,
+      "top_similarity": 0.865,
       "retrieved": [
         {
           "rank": 1,
-          "similarity": 0.8312,
-          "document_name": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
-          "section_title": "Upper urinary tract infection \u2014 Overview",
-          "page_number": 125,
-          "relevant": false
-        },
-        {
-          "rank": 2,
           "similarity": 0.865,
           "document_name": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
           "section_title": "Gonococcal infection \u2014 Overview",
@@ -132,11 +124,19 @@
           "relevant": true
         },
         {
-          "rank": 3,
-          "similarity": 0.8309,
+          "rank": 2,
+          "similarity": 0.856,
           "document_name": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
-          "section_title": "Septic arthritis \u2014 Overview",
-          "page_number": 131,
+          "section_title": "Gonococcal infection \u2014 Antibiotic Treatment - First Choice",
+          "page_number": 68,
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "similarity": 0.8502,
+          "document_name": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
+          "section_title": "Gonococcal infection \u2014 Overview",
+          "page_number": 67,
           "relevant": false
         },
         {
@@ -149,10 +149,10 @@
         },
         {
           "rank": 5,
-          "similarity": 0.8315,
+          "similarity": 0.836,
           "document_name": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
-          "section_title": "Acute diverticulitis \u2014 Treatment - Clinical Considerations",
-          "page_number": 117,
+          "section_title": "Acute bacterial osteomyelitis \u2014 Antibiotic Treatment - First Choice",
+          "page_number": 129,
           "relevant": false
         }
       ]
@@ -161,48 +161,48 @@
       "id": "q04",
       "category": "direct",
       "question": "What is the starting dose of the thiazide-like diuretic used as first-line treatment for hypertension?",
-      "p_at_3": 0.3333,
+      "p_at_3": 0.0,
       "p_at_5": 0.2,
       "top_document": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-      "top_similarity": 0.8491,
+      "top_similarity": 0.8707,
       "retrieved": [
         {
           "rank": 1,
-          "similarity": 0.8491,
+          "similarity": 0.8707,
           "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-          "section_title": "Diuretic as \ufb01rst-line treatment \u2014 Steps and Drug Doses",
-          "page_number": 17,
-          "relevant": true
+          "section_title": "Adapted example: CCB as first-line treatment \u2014 Steps and Drug Doses",
+          "page_number": 31,
+          "relevant": false
         },
         {
           "rank": 2,
-          "similarity": 0.87,
+          "similarity": 0.86,
           "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-          "section_title": "Adapted example: CCB as \ufb01rst-line treatment \u2014 Steps and Drug Doses",
-          "page_number": 31,
+          "section_title": "Use of BP-lowering drugs in patients with ischaemic CVD* \u2014 Steps and Drug Doses",
+          "page_number": 29,
           "relevant": false
         },
         {
           "rank": 3,
-          "similarity": 0.8503,
+          "similarity": 0.8589,
           "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-          "section_title": "Adapted example: CCB as \ufb01rst-line treatment \u2014 Steps and Drug Doses",
-          "page_number": 31,
+          "section_title": "CCB + diuretic as first-line treatment \u2014 Steps and Drug Doses",
+          "page_number": 25,
           "relevant": false
         },
         {
           "rank": 4,
-          "similarity": 0.8494,
+          "similarity": 0.8574,
           "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-          "section_title": "Adapted example: telmisartan 40 mg*/\namlodipine 5 mg\u00a7 single-pill combination\u00a5 regimen \u2014 Steps and Drug Doses",
-          "page_number": 33,
-          "relevant": false
+          "section_title": "Diuretic as first-line treatment \u2014 Steps and Drug Doses",
+          "page_number": 17,
+          "relevant": true
         },
         {
           "rank": 5,
-          "similarity": 0.8551,
+          "similarity": 0.8572,
           "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-          "section_title": "ACE-I or ARB* + diuretic as \ufb01rst-line treatment \u2014 Steps and Drug Doses",
+          "section_title": "ACE-I or ARB* + diuretic as first-line treatment \u2014 Steps and Drug Doses",
           "page_number": 27,
           "relevant": false
         }
@@ -212,14 +212,14 @@
       "id": "q05",
       "category": "direct",
       "question": "What tests are used to diagnose type 2 diabetes?",
-      "p_at_3": 0.3333,
-      "p_at_5": 0.2,
+      "p_at_3": 0.0,
+      "p_at_5": 0.4,
       "top_document": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-      "top_similarity": 0.8611,
+      "top_similarity": 0.8634,
       "retrieved": [
         {
           "rank": 1,
-          "similarity": 0.8611,
+          "similarity": 0.8634,
           "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
           "section_title": "2\t Diabetes detection and",
           "page_number": 34,
@@ -227,15 +227,15 @@
         },
         {
           "rank": 2,
-          "similarity": 0.8256,
+          "similarity": 0.8472,
           "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-          "section_title": "Type 2 diabetes management protocol derived from WHO-PEN (27, 29) \u2014 Provision for Specific Patients / Lifestyle Advice",
-          "page_number": 37,
-          "relevant": true
+          "section_title": "2\t Diabetes detection and",
+          "page_number": 34,
+          "relevant": false
         },
         {
           "rank": 3,
-          "similarity": 0.8373,
+          "similarity": 0.8282,
           "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
           "section_title": "2\t Diabetes detection and",
           "page_number": 34,
@@ -243,19 +243,19 @@
         },
         {
           "rank": 4,
-          "similarity": 0.8052,
+          "similarity": 0.8259,
           "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-          "section_title": "3\t Identifying emergencies",
-          "page_number": 38,
-          "relevant": false
+          "section_title": "Type 2 diabetes management protocol derived from WHO-PEN (27, 29) \u2014 Provision for Specific Patients / Lifestyle Advice",
+          "page_number": 37,
+          "relevant": true
         },
         {
           "rank": 5,
-          "similarity": 0.8051,
-          "document_name": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
-          "section_title": "Acute bacterial osteomyelitis \u2014 Diagnosis - Other Laboratory Tests",
-          "page_number": 126,
-          "relevant": false
+          "similarity": 0.8256,
+          "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
+          "section_title": "Type 2 diabetes management protocol derived from WHO-PEN (27, 29) \u2014 Provision for Specific Patients / Lifestyle Advice",
+          "page_number": 37,
+          "relevant": true
         }
       ]
     },
@@ -263,50 +263,50 @@
       "id": "q06",
       "category": "direct",
       "question": "What withdrawal effects can occur when stopping antidepressants?",
-      "p_at_3": 0.0,
-      "p_at_5": 0.2,
+      "p_at_3": 0.6667,
+      "p_at_5": 0.4,
       "top_document": "Polypharmacy in Older People (AWTTC, 2023).pdf",
-      "top_similarity": 0.8388,
+      "top_similarity": 0.887,
       "retrieved": [
         {
           "rank": 1,
-          "similarity": 0.8388,
+          "similarity": 0.887,
           "document_name": "Polypharmacy in Older People (AWTTC, 2023).pdf",
-          "section_title": "6.0 A practical guide to stopping medication in older people > 6.2 Benzodiazepines and Z-drugs > 6.2.3 Withdrawal effects",
-          "page_number": 18,
-          "relevant": false
+          "section_title": "6.0 A practical guide to stopping medication in older people > 6.4 Antidepressants > 6.4.3 Withdrawal effects",
+          "page_number": 21,
+          "relevant": true
         },
         {
           "rank": 2,
-          "similarity": 0.8434,
+          "similarity": 0.8755,
           "document_name": "Polypharmacy in Older People (AWTTC, 2023).pdf",
-          "section_title": "6.0 A practical guide to stopping medication in older people",
-          "page_number": 15,
-          "relevant": false
+          "section_title": "6.0 A practical guide to stopping medication in older people > 6.4 Antidepressants > 6.4.3 Withdrawal effects",
+          "page_number": 21,
+          "relevant": true
         },
         {
           "rank": 3,
-          "similarity": 0.8681,
-          "document_name": "Polypharmacy in Older People (AWTTC, 2023).pdf",
-          "section_title": "6.0 A practical guide to stopping medication in older people > 6.7 Opioids in non-cancer pain > 6.7.3 Withdrawal effects",
-          "page_number": 28,
-          "relevant": false
-        },
-        {
-          "rank": 4,
-          "similarity": 0.8599,
+          "similarity": 0.863,
           "document_name": "Polypharmacy in Older People (AWTTC, 2023).pdf",
           "section_title": "6.0 A practical guide to stopping medication in older people > 6.3 Oral corticosteroids > 6.3.3 Withdrawal effects",
           "page_number": 19,
           "relevant": false
         },
         {
-          "rank": 5,
-          "similarity": 0.8658,
+          "rank": 4,
+          "similarity": 0.8537,
           "document_name": "Polypharmacy in Older People (AWTTC, 2023).pdf",
-          "section_title": "6.0 A practical guide to stopping medication in older people > 6.4 Antidepressants > 6.4.3 Withdrawal effects",
-          "page_number": 21,
-          "relevant": true
+          "section_title": "6.0 A practical guide to stopping medication in older people > 6.7 Opioids in non-cancer pain > 6.7.3 Withdrawal effects",
+          "page_number": 28,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "similarity": 0.844,
+          "document_name": "Polypharmacy in Older People (AWTTC, 2023).pdf",
+          "section_title": "6.0 A practical guide to stopping medication in older people > 6.4 Antidepressants > 6.4.2 Tapering guide",
+          "page_number": 20,
+          "relevant": false
         }
       ]
     },
@@ -314,8 +314,8 @@
       "id": "q07",
       "category": "multi-chunk",
       "question": "What is the antibiotic treatment and treatment duration for pharyngitis?",
-      "p_at_3": 0.6667,
-      "p_at_5": 0.6,
+      "p_at_3": 1.0,
+      "p_at_5": 0.8,
       "top_document": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
       "top_similarity": 0.8842,
       "retrieved": [
@@ -337,14 +337,6 @@
         },
         {
           "rank": 3,
-          "similarity": 0.8527,
-          "document_name": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
-          "section_title": "Pyomyositis \u2014 Treatment - Clinical Considerations",
-          "page_number": 138,
-          "relevant": false
-        },
-        {
-          "rank": 4,
           "similarity": 0.8725,
           "document_name": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
           "section_title": "Pharyngitis \u2014 Overview",
@@ -352,11 +344,19 @@
           "relevant": true
         },
         {
-          "rank": 5,
-          "similarity": 0.8535,
+          "rank": 4,
+          "similarity": 0.8641,
           "document_name": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
-          "section_title": "Impetigo / Erysipelas / Cellulitis \u2014 Treatment - Antibiotic Treatment Duration",
-          "page_number": 55,
+          "section_title": "Pharyngitis \u2014 Antibiotic Treatment - Second Choice",
+          "page_number": 16,
+          "relevant": true
+        },
+        {
+          "rank": 5,
+          "similarity": 0.8601,
+          "document_name": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
+          "section_title": "Periorbital cellulitis \u2014 Overview",
+          "page_number": 40,
           "relevant": false
         }
       ]
@@ -368,14 +368,14 @@
       "p_at_3": 0.6667,
       "p_at_5": 0.6,
       "top_document": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
-      "top_similarity": 0.8745,
+      "top_similarity": 0.891,
       "retrieved": [
         {
           "rank": 1,
-          "similarity": 0.8745,
+          "similarity": 0.891,
           "document_name": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
-          "section_title": "Bacterial meningitis \u2014 Treatment - Prevention",
-          "page_number": 92,
+          "section_title": "Bacterial meningitis \u2014 Treatment - Clinical Considerations",
+          "page_number": 93,
           "relevant": false
         },
         {
@@ -396,18 +396,18 @@
         },
         {
           "rank": 4,
-          "similarity": 0.891,
+          "similarity": 0.8745,
           "document_name": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
-          "section_title": "Bacterial meningitis \u2014 Treatment - Clinical Considerations",
-          "page_number": 93,
+          "section_title": "Bacterial meningitis \u2014 Treatment - Prevention",
+          "page_number": 92,
           "relevant": false
         },
         {
           "rank": 5,
-          "similarity": 0.8708,
+          "similarity": 0.8717,
           "document_name": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
-          "section_title": "Bacterial meningitis \u2014 Definition",
-          "page_number": 90,
+          "section_title": "Bacterial meningitis \u2014 Antibiotic Treatment - First Choice",
+          "page_number": 91,
           "relevant": true
         }
       ]
@@ -416,49 +416,49 @@
       "id": "q09",
       "category": "multi-chunk",
       "question": "What are the advantages and disadvantages of ACE inhibitors for hypertension, and when are they contraindicated?",
-      "p_at_3": 0.0,
+      "p_at_3": 0.3333,
       "p_at_5": 0.2,
       "top_document": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-      "top_similarity": 0.8875,
+      "top_similarity": 0.8929,
       "retrieved": [
         {
           "rank": 1,
-          "similarity": 0.8875,
-          "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-          "section_title": "ACE-I or ARB* + diuretic as \ufb01rst-line treatment \u2014 Box 6: Advantages and disadvantages of ACE inhibitor plus diuretic",
-          "page_number": 26,
-          "relevant": false
-        },
-        {
-          "rank": 2,
-          "similarity": 0.8865,
-          "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-          "section_title": "ACE-I or ARB* + CCB as \ufb01rst-line treatment \u2014 Box 4: Advantages and disadvantages of ACE inhibitors plus CCBs",
-          "page_number": 22,
-          "relevant": false
-        },
-        {
-          "rank": 3,
-          "similarity": 0.8573,
-          "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-          "section_title": "Adapted example: telmisartan 40 mg*/\namlodipine 5 mg\u00a7 single-pill combination\u00a5 regimen \u2014 Box 8: Advantages and disadvantages of telmisartan 40 mg/amlodipine 5 mg",
-          "page_number": 32,
-          "relevant": false
-        },
-        {
-          "rank": 4,
           "similarity": 0.8929,
           "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-          "section_title": "ACE-I or ARB* as \ufb01rst-line treatment \u2014 Box 3:\tAdvantages and disadvantages of ACE inhibitors",
+          "section_title": "ACE-I or ARB* as first-line treatment \u2014 Box 3:\tAdvantages and disadvantages of ACE inhibitors",
           "page_number": 20,
           "relevant": true
         },
         {
-          "rank": 5,
+          "rank": 2,
+          "similarity": 0.8875,
+          "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
+          "section_title": "ACE-I or ARB* + diuretic as first-line treatment \u2014 Box 6: Advantages and disadvantages of ACE inhibitor plus diuretic",
+          "page_number": 26,
+          "relevant": false
+        },
+        {
+          "rank": 3,
+          "similarity": 0.8865,
+          "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
+          "section_title": "ACE-I or ARB* + CCB as first-line treatment \u2014 Box 4: Advantages and disadvantages of ACE inhibitors plus CCBs",
+          "page_number": 22,
+          "relevant": false
+        },
+        {
+          "rank": 4,
           "similarity": 0.8633,
           "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-          "section_title": "CCB + diuretic as \ufb01rst-line treatment \u2014 Box 5: Advantages and disadvantages of CCBs and diuretics",
+          "section_title": "CCB + diuretic as first-line treatment \u2014 Box 5: Advantages and disadvantages of CCBs and diuretics",
           "page_number": 24,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "similarity": 0.8631,
+          "document_name": "Polypharmacy in Older People (AWTTC, 2023).pdf",
+          "section_title": "6.0 A practical guide to stopping medication in older people > 6.1 Antihypertensives",
+          "page_number": 16,
           "relevant": false
         }
       ]
@@ -467,14 +467,14 @@
       "id": "q10",
       "category": "multi-chunk",
       "question": "When should benzodiazepines be considered for stopping in older people, and what withdrawal effects can occur?",
-      "p_at_3": 0.3333,
-      "p_at_5": 0.2,
+      "p_at_3": 0.6667,
+      "p_at_5": 0.4,
       "top_document": "Polypharmacy in Older People (AWTTC, 2023).pdf",
-      "top_similarity": 0.8935,
+      "top_similarity": 0.8971,
       "retrieved": [
         {
           "rank": 1,
-          "similarity": 0.8935,
+          "similarity": 0.8971,
           "document_name": "Polypharmacy in Older People (AWTTC, 2023).pdf",
           "section_title": "6.0 A practical guide to stopping medication in older people > 6.2 Benzodiazepines and Z-drugs > 6.2.3 Withdrawal effects",
           "page_number": 18,
@@ -482,34 +482,34 @@
         },
         {
           "rank": 2,
-          "similarity": 0.8565,
+          "similarity": 0.8945,
           "document_name": "Polypharmacy in Older People (AWTTC, 2023).pdf",
-          "section_title": "6.0 A practical guide to stopping medication in older people",
-          "page_number": 15,
-          "relevant": false
+          "section_title": "6.0 A practical guide to stopping medication in older people > 6.2 Benzodiazepines and Z-drugs > 6.2.1 When to consider stopping",
+          "page_number": 17,
+          "relevant": true
         },
         {
           "rank": 3,
-          "similarity": 0.8566,
+          "similarity": 0.8824,
           "document_name": "Polypharmacy in Older People (AWTTC, 2023).pdf",
-          "section_title": "6.0 A practical guide to stopping medication in older people > 6.3 Oral corticosteroids > 6.3.3 Withdrawal effects",
-          "page_number": 19,
+          "section_title": "6.0 A practical guide to stopping medication in older people > 6.8 Gabapentinoids in neuropathic pain > 6.8.1 When to consider stopping",
+          "page_number": 29,
           "relevant": false
         },
         {
           "rank": 4,
-          "similarity": 0.8585,
+          "similarity": 0.8767,
           "document_name": "Polypharmacy in Older People (AWTTC, 2023).pdf",
-          "section_title": "6.0 A practical guide to stopping medication in older people > 6.7 Opioids in non-cancer pain > 6.7.3 Withdrawal effects",
-          "page_number": 28,
+          "section_title": "6.0 A practical guide to stopping medication in older people > 6.4 Antidepressants > 6.4.3 Withdrawal effects",
+          "page_number": 21,
           "relevant": false
         },
         {
           "rank": 5,
-          "similarity": 0.8767,
+          "similarity": 0.8725,
           "document_name": "Polypharmacy in Older People (AWTTC, 2023).pdf",
-          "section_title": "6.0 A practical guide to stopping medication in older people > 6.8 Gabapentinoids in neuropathic pain > 6.8.1 When to consider stopping",
-          "page_number": 29,
+          "section_title": "Overview",
+          "page_number": 1,
           "relevant": false
         }
       ]
@@ -521,19 +521,19 @@
       "p_at_3": 0.3333,
       "p_at_5": 0.2,
       "top_document": "Polypharmacy in Older People (AWTTC, 2023).pdf",
-      "top_similarity": 0.8604,
+      "top_similarity": 0.8778,
       "retrieved": [
         {
           "rank": 1,
-          "similarity": 0.8604,
+          "similarity": 0.8778,
           "document_name": "Polypharmacy in Older People (AWTTC, 2023).pdf",
-          "section_title": "2.0 Frailty",
-          "page_number": 7,
-          "relevant": false
+          "section_title": "6.0 A practical guide to stopping medication in older people > 6.1 Antihypertensives",
+          "page_number": 16,
+          "relevant": true
         },
         {
           "rank": 2,
-          "similarity": 0.8654,
+          "similarity": 0.8648,
           "document_name": "Polypharmacy in Older People (AWTTC, 2023).pdf",
           "section_title": "2.0 Frailty",
           "page_number": 7,
@@ -541,26 +541,26 @@
         },
         {
           "rank": 3,
-          "similarity": 0.8796,
+          "similarity": 0.8635,
           "document_name": "Polypharmacy in Older People (AWTTC, 2023).pdf",
-          "section_title": "6.0 A practical guide to stopping medication in older people > 6.1 Antihypertensives",
-          "page_number": 16,
-          "relevant": true
+          "section_title": "6.0 A practical guide to stopping medication in older people",
+          "page_number": 15,
+          "relevant": false
         },
         {
           "rank": 4,
-          "similarity": 0.8532,
-          "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-          "section_title": "3\t Identifying emergencies",
-          "page_number": 38,
+          "similarity": 0.8614,
+          "document_name": "Polypharmacy in Older People (AWTTC, 2023).pdf",
+          "section_title": "2.0 Frailty",
+          "page_number": 7,
           "relevant": false
         },
         {
           "rank": 5,
-          "similarity": 0.8564,
+          "similarity": 0.8572,
           "document_name": "Polypharmacy in Older People (AWTTC, 2023).pdf",
-          "section_title": "3.0 High-risk medication",
-          "page_number": 9,
+          "section_title": "6.0 A practical guide to stopping medication in older people",
+          "page_number": 15,
           "relevant": false
         }
       ]
@@ -569,21 +569,13 @@
       "id": "q12",
       "category": "ambiguous",
       "question": "What is the treatment for a urinary tract infection?",
-      "p_at_3": 0.3333,
-      "p_at_5": 0.2,
+      "p_at_3": 0.6667,
+      "p_at_5": 0.4,
       "top_document": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
-      "top_similarity": 0.866,
+      "top_similarity": 0.8735,
       "retrieved": [
         {
           "rank": 1,
-          "similarity": 0.866,
-          "document_name": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
-          "section_title": "Upper urinary tract infection \u2014 Overview",
-          "page_number": 123,
-          "relevant": false
-        },
-        {
-          "rank": 2,
           "similarity": 0.8735,
           "document_name": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
           "section_title": "Upper urinary tract infection \u2014 Overview",
@@ -591,27 +583,35 @@
           "relevant": true
         },
         {
-          "rank": 3,
-          "similarity": 0.8646,
+          "rank": 2,
+          "similarity": 0.8726,
           "document_name": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
-          "section_title": "Upper urinary tract infection \u2014 Diagnosis - Microbiology Tests",
-          "page_number": 122,
+          "section_title": "Lower urinary tract infection \u2014 Overview",
+          "page_number": 76,
           "relevant": false
+        },
+        {
+          "rank": 3,
+          "similarity": 0.8713,
+          "document_name": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
+          "section_title": "Lower urinary tract infection \u2014 Overview",
+          "page_number": 74,
+          "relevant": true
         },
         {
           "rank": 4,
-          "similarity": 0.855,
-          "document_name": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
-          "section_title": "Lower urinary tract infection \u2014 Diagnosis - Microbiology Tests",
-          "page_number": 75,
-          "relevant": false
-        },
-        {
-          "rank": 5,
           "similarity": 0.8669,
           "document_name": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
           "section_title": "Upper urinary tract infection \u2014 Overview",
           "page_number": 124,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "similarity": 0.866,
+          "document_name": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
+          "section_title": "Upper urinary tract infection \u2014 Overview",
+          "page_number": 123,
           "relevant": false
         }
       ]
@@ -620,29 +620,21 @@
       "id": "q13",
       "category": "ambiguous",
       "question": "What antibiotic should be used to treat sepsis?",
-      "p_at_3": 0.3333,
-      "p_at_5": 0.4,
+      "p_at_3": 1.0,
+      "p_at_5": 0.6,
       "top_document": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
-      "top_similarity": 0.8538,
+      "top_similarity": 0.8682,
       "retrieved": [
         {
           "rank": 1,
-          "similarity": 0.8538,
+          "similarity": 0.8682,
           "document_name": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
-          "section_title": "Sepsis & septic shock \u2014 Diagnosis - Clinical Presentation",
-          "page_number": 80,
-          "relevant": false
+          "section_title": "Sepsis & septic shock \u2014 Overview",
+          "page_number": 82,
+          "relevant": true
         },
         {
           "rank": 2,
-          "similarity": 0.855,
-          "document_name": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
-          "section_title": "Sepsis in neonates \u2014 Overview",
-          "page_number": 89,
-          "relevant": false
-        },
-        {
-          "rank": 3,
           "similarity": 0.8664,
           "document_name": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
           "section_title": "Sepsis in children \u2014 Antibiotic Treatment - Second Choice",
@@ -650,19 +642,27 @@
           "relevant": true
         },
         {
-          "rank": 4,
-          "similarity": 0.8525,
+          "rank": 3,
+          "similarity": 0.8585,
           "document_name": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
-          "section_title": "Sepsis & septic shock \u2014 Treatment - Antibiotic Treatment Duration",
+          "section_title": "Sepsis & septic shock \u2014 Antibiotic Treatment - Second Choice",
           "page_number": 82,
           "relevant": true
         },
         {
-          "rank": 5,
-          "similarity": 0.8535,
+          "rank": 4,
+          "similarity": 0.8572,
           "document_name": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
-          "section_title": "Septic arthritis \u2014 Overview",
-          "page_number": 133,
+          "section_title": "Septic arthritis \u2014 Treatment - Antibiotic Treatment",
+          "page_number": 131,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "similarity": 0.855,
+          "document_name": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
+          "section_title": "Sepsis in neonates \u2014 Overview",
+          "page_number": 89,
           "relevant": false
         }
       ]
@@ -674,11 +674,11 @@
       "p_at_3": 0.0,
       "p_at_5": 0.2,
       "top_document": "Polypharmacy in Older People (AWTTC, 2023).pdf",
-      "top_similarity": 0.8657,
+      "top_similarity": 0.8694,
       "retrieved": [
         {
           "rank": 1,
-          "similarity": 0.8657,
+          "similarity": 0.8694,
           "document_name": "Polypharmacy in Older People (AWTTC, 2023).pdf",
           "section_title": "6.0 A practical guide to stopping medication in older people > 6.9 Antipsychotics to treat non-cognitive symptoms of dementia (previously known > 6.9.1 When to consider stopping",
           "page_number": 30,
@@ -686,35 +686,35 @@
         },
         {
           "rank": 2,
-          "similarity": 0.8646,
-          "document_name": "Polypharmacy in Older People (AWTTC, 2023).pdf",
-          "section_title": "6.0 A practical guide to stopping medication in older people > 6.1 Antihypertensives",
-          "page_number": 16,
-          "relevant": false
-        },
-        {
-          "rank": 3,
-          "similarity": 0.8738,
+          "similarity": 0.8689,
           "document_name": "Polypharmacy in Older People (AWTTC, 2023).pdf",
           "section_title": "9.0 Falls",
           "page_number": 35,
           "relevant": false
         },
         {
-          "rank": 4,
-          "similarity": 0.8562,
+          "rank": 3,
+          "similarity": 0.8678,
           "document_name": "Polypharmacy in Older People (AWTTC, 2023).pdf",
-          "section_title": "3.0 High-risk medication",
-          "page_number": 9,
+          "section_title": "6.0 A practical guide to stopping medication in older people",
+          "page_number": 15,
           "relevant": false
         },
         {
-          "rank": 5,
-          "similarity": 0.8683,
+          "rank": 4,
+          "similarity": 0.8665,
           "document_name": "Polypharmacy in Older People (AWTTC, 2023).pdf",
           "section_title": "6.0 A practical guide to stopping medication in older people > 6.8 Gabapentinoids in neuropathic pain > 6.8.1 When to consider stopping",
           "page_number": 29,
           "relevant": true
+        },
+        {
+          "rank": 5,
+          "similarity": 0.8626,
+          "document_name": "Polypharmacy in Older People (AWTTC, 2023).pdf",
+          "section_title": "6.0 A practical guide to stopping medication in older people",
+          "page_number": 15,
+          "relevant": false
         }
       ]
     },
@@ -723,29 +723,29 @@
       "category": "ambiguous",
       "question": "Which protocol should be used as first-line treatment for hypertension?",
       "p_at_3": 0.0,
-      "p_at_5": 0.4,
-      "top_document": "Polypharmacy in Older People (AWTTC, 2023).pdf",
-      "top_similarity": 0.837,
+      "p_at_5": 0.0,
+      "top_document": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
+      "top_similarity": 0.8564,
       "retrieved": [
         {
           "rank": 1,
-          "similarity": 0.837,
-          "document_name": "Polypharmacy in Older People (AWTTC, 2023).pdf",
-          "section_title": "6.0 A practical guide to stopping medication in older people > 6.1 Antihypertensives",
-          "page_number": 16,
+          "similarity": 0.8564,
+          "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
+          "section_title": "3\t Identifying emergencies",
+          "page_number": 38,
           "relevant": false
         },
         {
           "rank": 2,
-          "similarity": 0.8315,
+          "similarity": 0.8521,
           "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-          "section_title": "Adapted example: telmisartan 40 mg*/\namlodipine 5 mg\u00a7 single-pill combination\u00a5 regimen \u2014 Steps and Drug Doses",
-          "page_number": 33,
+          "section_title": "3\t Identifying emergencies",
+          "page_number": 38,
           "relevant": false
         },
         {
           "rank": 3,
-          "similarity": 0.8519,
+          "similarity": 0.846,
           "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
           "section_title": "3\t Identifying emergencies",
           "page_number": 38,
@@ -753,19 +753,19 @@
         },
         {
           "rank": 4,
-          "similarity": 0.8327,
-          "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-          "section_title": "ACE-I or ARB* as \ufb01rst-line treatment \u2014 Provision for Specific Patients / Lifestyle Advice",
-          "page_number": 21,
-          "relevant": true
+          "similarity": 0.837,
+          "document_name": "Polypharmacy in Older People (AWTTC, 2023).pdf",
+          "section_title": "6.0 A practical guide to stopping medication in older people > 6.1 Antihypertensives",
+          "page_number": 16,
+          "relevant": false
         },
         {
           "rank": 5,
-          "similarity": 0.8319,
+          "similarity": 0.8348,
           "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-          "section_title": "Diuretic as \ufb01rst-line treatment \u2014 Provision for Specific Patients / Lifestyle Advice",
-          "page_number": 17,
-          "relevant": true
+          "section_title": "ACE-I or ARB* + diuretic as first-line treatment \u2014 Provision for Specific Patients / Lifestyle Advice",
+          "page_number": 27,
+          "relevant": false
         }
       ]
     },
@@ -774,49 +774,49 @@
       "category": "needs-caution",
       "question": "Is it safe for a pregnant woman to take an ACE inhibitor for high blood pressure?",
       "p_at_3": 0.3333,
-      "p_at_5": 0.2,
+      "p_at_5": 0.4,
       "top_document": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-      "top_similarity": 0.8722,
+      "top_similarity": 0.8794,
       "retrieved": [
         {
           "rank": 1,
-          "similarity": 0.8722,
+          "similarity": 0.8794,
           "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-          "section_title": "ACE-I or ARB* + diuretic as \ufb01rst-line treatment \u2014 Box 6: Advantages and disadvantages of ACE inhibitor plus diuretic",
-          "page_number": 26,
+          "section_title": "ACE-I or ARB* + CCB as first-line treatment \u2014 Steps and Drug Doses",
+          "page_number": 23,
           "relevant": false
         },
         {
           "rank": 2,
-          "similarity": 0.8714,
+          "similarity": 0.8754,
           "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-          "section_title": "ACE-I or ARB* as \ufb01rst-line treatment \u2014 Provision for Specific Patients / Lifestyle Advice",
+          "section_title": "ACE-I or ARB* as first-line treatment \u2014 Steps and Drug Doses",
           "page_number": 21,
           "relevant": true
         },
         {
           "rank": 3,
-          "similarity": 0.8713,
+          "similarity": 0.8722,
           "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-          "section_title": "ACE-I or ARB* + CCB as \ufb01rst-line treatment \u2014 Box 4: Advantages and disadvantages of ACE inhibitors plus CCBs",
-          "page_number": 22,
+          "section_title": "ACE-I or ARB* + diuretic as first-line treatment \u2014 Box 6: Advantages and disadvantages of ACE inhibitor plus diuretic",
+          "page_number": 26,
           "relevant": false
         },
         {
           "rank": 4,
-          "similarity": 0.8679,
+          "similarity": 0.8719,
           "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-          "section_title": "ACE-I or ARB* as \ufb01rst-line treatment \u2014 Box 3:\tAdvantages and disadvantages of ACE inhibitors",
-          "page_number": 20,
+          "section_title": "Diuretic as first-line treatment \u2014 Steps and Drug Doses",
+          "page_number": 17,
           "relevant": false
         },
         {
           "rank": 5,
-          "similarity": 0.8684,
+          "similarity": 0.8714,
           "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-          "section_title": "Adapted example: CCB as \ufb01rst-line treatment \u2014 Steps and Drug Doses",
-          "page_number": 31,
-          "relevant": false
+          "section_title": "ACE-I or ARB* as first-line treatment \u2014 Provision for Specific Patients / Lifestyle Advice",
+          "page_number": 21,
+          "relevant": true
         }
       ]
     },
@@ -824,14 +824,14 @@
       "id": "q20",
       "category": "needs-caution",
       "question": "Should antipsychotics be prescribed to an elderly patient with dementia showing agitation?",
-      "p_at_3": 0.0,
+      "p_at_3": 0.3333,
       "p_at_5": 0.2,
       "top_document": "Polypharmacy in Older People (AWTTC, 2023).pdf",
-      "top_similarity": 0.8949,
+      "top_similarity": 0.8939,
       "retrieved": [
         {
           "rank": 1,
-          "similarity": 0.8949,
+          "similarity": 0.8939,
           "document_name": "Polypharmacy in Older People (AWTTC, 2023).pdf",
           "section_title": "6.0 A practical guide to stopping medication in older people > 6.9 Antipsychotics to treat non-cognitive symptoms of dementia (previously known > 6.9.1 When to consider stopping",
           "page_number": 30,
@@ -839,34 +839,34 @@
         },
         {
           "rank": 2,
-          "similarity": 0.8559,
-          "document_name": "Polypharmacy in Older People (AWTTC, 2023).pdf",
-          "section_title": "6.0 A practical guide to stopping medication in older people > 6.9 Antipsychotics to treat non-cognitive symptoms of dementia (previously known > 6.9.2 Tapering guide",
-          "page_number": 30,
-          "relevant": false
-        },
-        {
-          "rank": 3,
-          "similarity": 0.846,
-          "document_name": "Polypharmacy in Older People (AWTTC, 2023).pdf",
-          "section_title": "8.0 Anticholinergic Effect on Cognition (AEC)",
-          "page_number": 33,
-          "relevant": false
-        },
-        {
-          "rank": 4,
-          "similarity": 0.8695,
+          "similarity": 0.8781,
           "document_name": "Polypharmacy in Older People (AWTTC, 2023).pdf",
           "section_title": "6.0 A practical guide to stopping medication in older people > 6.9 Antipsychotics to treat non-cognitive symptoms of dementia (previously known > 6.9.4 Additional resources",
           "page_number": 31,
           "relevant": true
         },
         {
-          "rank": 5,
-          "similarity": 0.8467,
+          "rank": 3,
+          "similarity": 0.8775,
           "document_name": "Polypharmacy in Older People (AWTTC, 2023).pdf",
-          "section_title": "2018 Clinical Practice Guidelines for the Prevention and Management of Diabetes",
-          "page_number": 40,
+          "section_title": "6.0 A practical guide to stopping medication in older people > 6.9 Antipsychotics to treat non-cognitive symptoms of dementia (previously known > 6.9.2 Tapering guide",
+          "page_number": 30,
+          "relevant": false
+        },
+        {
+          "rank": 4,
+          "similarity": 0.8594,
+          "document_name": "Polypharmacy in Older People (AWTTC, 2023).pdf",
+          "section_title": "6.9 Antipsychotics to treat non-cognitive symptoms of dementia (previously",
+          "page_number": 3,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "similarity": 0.8514,
+          "document_name": "Polypharmacy in Older People (AWTTC, 2023).pdf",
+          "section_title": "6.0 A practical guide to stopping medication in older people > 6.8 Gabapentinoids in neuropathic pain > 6.8.1 When to consider stopping",
+          "page_number": 29,
           "relevant": false
         }
       ]
@@ -878,28 +878,27 @@
       "question": "What is the recommended insulin dose for a diabetic cat?",
       "top_document": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
       "top_section_title": "2\t Diabetes detection and",
-      "top_similarity": 0.8344
+      "top_similarity": 0.8365
     },
     {
       "id": "q17",
       "question": "I'm having severe chest pain right now, what should I do?",
       "top_document": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-      "top_section_title": "3\t Identifying emergencies",
-      "top_similarity": 0.8104
+      "top_section_title": "Adapted example: telmisartan 40 mg*/\namlodipine 5 mg\u00a7 single-pill combination\u00a5 regimen \u2014 Provision for Specific Patients / Lifestyle Advice",
+      "top_similarity": 0.8236
     },
     {
       "id": "q18",
       "question": "Can you look at my symptoms and tell me what's causing the rash on my arm?",
       "top_document": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
-      "top_section_title": "Oral and dental infections \u2014 Diagnosis - Clinical Presentation",
-      "top_similarity": 0.8219
+      "top_section_title": "Pyomyositis \u2014 Diagnosis - Imaging",
+      "top_similarity": 0.8438
     }
   ],
   "failures": [
-    "q06",
-    "q09",
+    "q04",
+    "q05",
     "q14",
-    "q15",
-    "q20"
+    "q15"
   ]
 }

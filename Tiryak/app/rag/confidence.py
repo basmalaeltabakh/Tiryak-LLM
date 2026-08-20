@@ -1,9 +1,12 @@
 from typing import List, Dict
 from fastapi import HTTPException
 from app.rag.llm_provider import generate_content
+from app.config import CHUNK_RELEVANCE_DISTANCE_THRESHOLD
 
 
-def compute_retrieval_confidence(chunks: List[Dict], distance_threshold: float = 0.6) -> str:
+def compute_retrieval_confidence(
+    chunks: List[Dict], distance_threshold: float = CHUNK_RELEVANCE_DISTANCE_THRESHOLD
+) -> str:
     """
     Estimates confidence based on how close the retrieved chunks are
     to the query (cosine distance). Lower distance = higher confidence.
@@ -62,13 +65,18 @@ Respond with exactly one word: "grounded" if the answer is fully supported by th
         return "partially_grounded"
 
 
-def get_confidence_report(answer: str, chunks: List[Dict], check_grounding: bool = True) -> Dict:
+def get_confidence_report(
+    answer: str,
+    chunks: List[Dict],
+    check_grounding: bool = True,
+    distance_threshold: float = CHUNK_RELEVANCE_DISTANCE_THRESHOLD,
+) -> Dict:
     """
     Combines retrieval-based and generation-based confidence signals
     into a single report. Set check_grounding=False to skip the extra
     LLM call and save quota during development/testing.
     """
-    retrieval_confidence = compute_retrieval_confidence(chunks)
+    retrieval_confidence = compute_retrieval_confidence(chunks, distance_threshold=distance_threshold)
 
     if check_grounding:
         grounding_verdict = verify_answer_grounding(answer, chunks)

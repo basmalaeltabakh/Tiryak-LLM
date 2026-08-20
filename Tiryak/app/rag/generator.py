@@ -53,8 +53,9 @@ def build_context_prompt(query: str, chunks: List[Dict], user_type: str = "pharm
 
 1. Only use information from the provided sources. Do not use outside knowledge.
 2. If the sources don't contain enough information to answer, say so clearly instead of guessing.
-3. After each claim in your answer, cite the source using this format: [Document Name, Page X].
-4. {language_instruction}5. {audience_instruction}{multi_doc_instruction}6. Structure your answer like this: start with a short 1-2 sentence direct answer, then (if useful) a few bullet points with specifics. Keep it concise and scannable — do NOT use multiple headers or long dense paragraphs. Do NOT use Markdown tables under any circumstances.
+3. If the sources simply don't mention the specific drug, combination, or condition asked about, that is NOT evidence that no interaction/risk exists. Never phrase this as a clinical finding (e.g. "there is no interaction"). State plainly that the available sources don't address it.
+4. After each claim in your answer, cite the source using this format: [Document Name, Page X].
+5. {language_instruction}6. {audience_instruction}{multi_doc_instruction}7. Structure your answer like this: start with a short 1-2 sentence direct answer, then (if useful) a few bullet points with specifics. Keep it concise and scannable — do NOT use multiple headers or long dense paragraphs. Do NOT use Markdown tables under any circumstances.
 
 Sources:
 {context_text}

@@ -9,8 +9,13 @@ import streamlit.components.v1 as components
 
 API_BASE_URL = "http://127.0.0.1:8000"
 
-# Real backend default from app/safety/guardrails.py check_retrieval_sufficiency()
-INSUFFICIENT_EVIDENCE_DISTANCE_THRESHOLD = 0.75
+# Real backend defaults: app/config.py CHUNK_RELEVANCE_DISTANCE_THRESHOLD /
+# CHUNK_RELEVANCE_DISTANCE_THRESHOLD_AR, used by app/safety/guardrails.py
+# filter_relevant_chunks(). Arabic queries use a looser cutoff — the corpus is
+# English-source text, so an Arabic query is always a cross-lingual match and
+# scores systematically higher-distance for the same correct content.
+INSUFFICIENT_EVIDENCE_DISTANCE_THRESHOLD = 0.14
+INSUFFICIENT_EVIDENCE_DISTANCE_THRESHOLD_AR = 0.18
 
 # ─── Logo resolution (checks png then jpg, relative to this script) ───
 _SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -983,10 +988,11 @@ def render_emergency_card() -> str:
     </div>''')
 
 
-def render_insufficient_card() -> str:
+def render_insufficient_card(is_arabic: bool = False) -> str:
     doc_count = len(st.session_state.documents) if st.session_state.documents else "—"
     message = t("insufficient_message")
     message_dir = "rtl" if contains_arabic(message) else "ltr"
+    threshold = INSUFFICIENT_EVIDENCE_DISTANCE_THRESHOLD_AR if is_arabic else INSUFFICIENT_EVIDENCE_DISTANCE_THRESHOLD
     return _flatten(f'''
     <div class="tk-card">
       <span class="badge badge-insufficient">{t("badge_insufficient")}</span>
@@ -994,7 +1000,7 @@ def render_insufficient_card() -> str:
       <table class="tk-search-table">
         <tr><td>{t("table_documents")}</td><td>{t("table_indexed", n=doc_count)}</td></tr>
         <tr><td>{t("table_closest_match")}</td><td>{t("table_below_threshold")}</td></tr>
-        <tr><td>{t("table_threshold")}</td><td>{INSUFFICIENT_EVIDENCE_DISTANCE_THRESHOLD}</td></tr>
+        <tr><td>{t("table_threshold")}</td><td>{threshold}</td></tr>
       </table>
     </div>''')
 
@@ -1051,7 +1057,7 @@ def render_entry_html(entry: dict) -> str:
     if risk_level == "refuse":
         card_html = render_emergency_card()
     elif risk_level == "insufficient_evidence":
-        card_html = render_insufficient_card()
+        card_html = render_insufficient_card(is_arabic=contains_arabic(entry.get("question", "")))
     else:
         card_html = render_answer_card(entry, risk_level)
 
@@ -1202,7 +1208,12 @@ def handle_text_question(question_text: str, doc_ids: list) -> bool:
     enriched = build_enriched_question(question_text)
     with st.spinner(t("checking_guidelines")):
         try:
-            payload = {"question": enriched, "document_ids": doc_ids, "user_type": st.session_state.user_type}
+            payload = {
+                "question": enriched,
+                "retrieval_query": question_text,
+                "document_ids": doc_ids,
+                "user_type": st.session_state.user_type,
+            }
             response = requests.post(f"{API_BASE_URL}/query/ask", json=payload, timeout=180)
         except requests.RequestException as e:
             st.error(t("request_failed", error=e))

@@ -2,6 +2,7 @@ import json
 from typing import Dict, List
 from fastapi import HTTPException
 from app.rag.llm_provider import generate_content
+from app.config import CHUNK_RELEVANCE_DISTANCE_THRESHOLD
 
 SAFETY_DISCLAIMER = {
     "en": (
@@ -60,9 +61,27 @@ The query may be in Arabic or English — classify it regardless of language.
 
 Classify the following user query into exactly one of three risk levels:
 
-- "allowed": A general question about {clinical_topic} answerable by citing official guideline text.
-- "needs_caution": A question describing a specific personal/patient scenario — answerable from guideline text, but requires extra caveats.
-- "refuse": The query describes a medical emergency, asks for a diagnosis, asks the assistant to decide a treatment plan or specific dose, or is unrelated to {clinical_topic}.
+- "allowed": A general question asking what official guidelines recommend for a condition, drug, or
+  interaction — e.g. "what is the treatment for X", "what antibiotic/protocol/dose does the guideline
+  recommend for X", "how is X diagnosed". This is ALLOWED even when the condition named is severe or
+  urgent-sounding (sepsis, meningitis, stroke, anaphylaxis) — the tool's entire purpose is answering
+  exactly these questions by citing guideline text. Severity of the CONDITION NAME is not a reason to
+  refuse; only the framing of the REQUEST matters (see "refuse" below).
+- "needs_caution": A question describing a specific real patient's situation (their own or someone
+  they're caring for) — answerable from guideline text, but requires extra caveats.
+- "refuse": ONLY when the query (a) describes a medical emergency actually happening right now to the
+  user or someone they're with (e.g. "I'm having chest pain right now", "my patient is in septic shock,
+  what do I do"), (b) asks the assistant to look at described symptoms and diagnose what's wrong with a
+  specific person, or (c) asks the assistant to pick/decide the specific dose or plan for a specific
+  named/described patient rather than state what the guideline recommends in general. A plain "what
+  is the treatment/antibiotic/dose for [condition]" lookup is NOT any of these — do not refuse it.
+
+Examples (do not copy the reasoning text, just the classification logic):
+- "What antibiotic should be used to treat sepsis?" -> allowed (general guideline lookup, no real patient)
+- "My patient is in septic shock right now, what do I do?" -> refuse (active emergency, asks assistant to act)
+- "What is the treatment for a urinary tract infection?" -> allowed (general guideline lookup)
+- "I think I have a UTI, what's wrong with me?" -> refuse (asks assistant to diagnose a real person)
+- "What is the diagnosis criteria and antibiotic treatment for bacterial meningitis?" -> allowed (general guideline lookup, even though the condition is severe)
 
 Query: "{query}"
 
@@ -101,11 +120,25 @@ def get_refusal_response(reasoning: str, language: str = "en") -> Dict:
     }
 
 
-def check_retrieval_sufficiency(chunks: List[Dict], distance_threshold: float = 0.75) -> bool:
-    if not chunks:
-        return False
-    avg_distance = sum(c["distance"] for c in chunks) / len(chunks)
-    return avg_distance <= distance_threshold
+def filter_relevant_chunks(
+    chunks: List[Dict], distance_threshold: float = CHUNK_RELEVANCE_DISTANCE_THRESHOLD
+) -> List[Dict]:
+    """
+    Keeps only chunks individually close enough to the query to be treated as
+    real evidence, instead of averaging distance across the whole top-K.
+    Averaging let a handful of irrelevant-but-similarly-scored chunks
+    (e.g. unrelated dosing tables, reference lists) drag an "insufficient
+    evidence" query below the block threshold and get treated as sufficient
+    — see the Aspirin/Ibuprofen audit for a concrete case where this let 5
+    topically unrelated chunks through as "high confidence" citations.
+    """
+    return [c for c in chunks if c["distance"] <= distance_threshold]
+
+
+def check_retrieval_sufficiency(
+    chunks: List[Dict], distance_threshold: float = CHUNK_RELEVANCE_DISTANCE_THRESHOLD
+) -> bool:
+    return len(filter_relevant_chunks(chunks, distance_threshold)) > 0
 
 
 def get_insufficient_evidence_response(language: str = "en") -> Dict:

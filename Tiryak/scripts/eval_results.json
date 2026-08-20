@@ -161,48 +161,48 @@
       "id": "q04",
       "category": "direct",
       "question": "What is the starting dose of the thiazide-like diuretic used as first-line treatment for hypertension?",
-      "p_at_3": 0.0,
+      "p_at_3": 0.3333,
       "p_at_5": 0.2,
       "top_document": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-      "top_similarity": 0.8707,
+      "top_similarity": 0.8742,
       "retrieved": [
         {
           "rank": 1,
-          "similarity": 0.8707,
+          "similarity": 0.8742,
           "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-          "section_title": "Adapted example: CCB as first-line treatment \u2014 Steps and Drug Doses",
+          "section_title": "Adapted example: CCB as frst-line treatment \u2014 Steps and Drug Doses",
           "page_number": 31,
           "relevant": false
         },
         {
           "rank": 2,
-          "similarity": 0.86,
+          "similarity": 0.863,
           "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-          "section_title": "Use of BP-lowering drugs in patients with ischaemic CVD* \u2014 Steps and Drug Doses",
-          "page_number": 29,
+          "section_title": "CCB as frst-line treatment \u2014 Steps and Drug Doses",
+          "page_number": 19,
           "relevant": false
         },
         {
           "rank": 3,
-          "similarity": 0.8589,
+          "similarity": 0.8621,
           "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-          "section_title": "CCB + diuretic as first-line treatment \u2014 Steps and Drug Doses",
-          "page_number": 25,
-          "relevant": false
-        },
-        {
-          "rank": 4,
-          "similarity": 0.8574,
-          "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-          "section_title": "Diuretic as first-line treatment \u2014 Steps and Drug Doses",
+          "section_title": "Diuretic as frst-line treatment \u2014 Steps and Drug Doses",
           "page_number": 17,
           "relevant": true
         },
         {
-          "rank": 5,
-          "similarity": 0.8572,
+          "rank": 4,
+          "similarity": 0.8607,
           "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-          "section_title": "ACE-I or ARB* + diuretic as first-line treatment \u2014 Steps and Drug Doses",
+          "section_title": "CCB + diuretic as frst-line treatment \u2014 Steps and Drug Doses",
+          "page_number": 25,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "similarity": 0.86,
+          "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
+          "section_title": "ACE-I or ARB* + diuretic as frst-line treatment \u2014 Steps and Drug Doses",
           "page_number": 27,
           "relevant": false
         }
@@ -212,7 +212,7 @@
       "id": "q05",
       "category": "direct",
       "question": "What tests are used to diagnose type 2 diabetes?",
-      "p_at_3": 0.0,
+      "p_at_3": 0.3333,
       "p_at_5": 0.4,
       "top_document": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
       "top_similarity": 0.8634,
@@ -227,6 +227,14 @@
         },
         {
           "rank": 2,
+          "similarity": 0.8573,
+          "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
+          "section_title": "Type 2 diabetes management protocol derived from WHO-PEN (27, 29) \u2014 Steps and Drug Doses",
+          "page_number": 37,
+          "relevant": true
+        },
+        {
+          "rank": 3,
           "similarity": 0.8472,
           "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
           "section_title": "2\t Diabetes detection and",
@@ -234,7 +242,7 @@
           "relevant": false
         },
         {
-          "rank": 3,
+          "rank": 4,
           "similarity": 0.8282,
           "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
           "section_title": "2\t Diabetes detection and",
@@ -242,16 +250,8 @@
           "relevant": false
         },
         {
-          "rank": 4,
-          "similarity": 0.8259,
-          "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-          "section_title": "Type 2 diabetes management protocol derived from WHO-PEN (27, 29) \u2014 Provision for Specific Patients / Lifestyle Advice",
-          "page_number": 37,
-          "relevant": true
-        },
-        {
           "rank": 5,
-          "similarity": 0.8256,
+          "similarity": 0.8244,
           "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
           "section_title": "Type 2 diabetes management protocol derived from WHO-PEN (27, 29) \u2014 Provision for Specific Patients / Lifestyle Advice",
           "page_number": 37,
@@ -419,37 +419,37 @@
       "p_at_3": 0.3333,
       "p_at_5": 0.2,
       "top_document": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-      "top_similarity": 0.8929,
+      "top_similarity": 0.8924,
       "retrieved": [
         {
           "rank": 1,
-          "similarity": 0.8929,
+          "similarity": 0.8924,
           "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-          "section_title": "ACE-I or ARB* as first-line treatment \u2014 Box 3:\tAdvantages and disadvantages of ACE inhibitors",
+          "section_title": "ACE-I or ARB* as frst-line treatment \u2014 Box 3:\tAdvantages and disadvantages of ACE inhibitors",
           "page_number": 20,
           "relevant": true
         },
         {
           "rank": 2,
-          "similarity": 0.8875,
+          "similarity": 0.8874,
           "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-          "section_title": "ACE-I or ARB* + diuretic as first-line treatment \u2014 Box 6: Advantages and disadvantages of ACE inhibitor plus diuretic",
+          "section_title": "ACE-I or ARB* + diuretic as frst-line treatment \u2014 Box 6: Advantages and disadvantages of ACE inhibitor plus diuretic",
           "page_number": 26,
           "relevant": false
         },
         {
           "rank": 3,
-          "similarity": 0.8865,
+          "similarity": 0.8868,
           "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-          "section_title": "ACE-I or ARB* + CCB as first-line treatment \u2014 Box 4: Advantages and disadvantages of ACE inhibitors plus CCBs",
+          "section_title": "ACE-I or ARB* + CCB as frst-line treatment \u2014 Box 4: Advantages and disadvantages of ACE inhibitors plus CCBs",
           "page_number": 22,
           "relevant": false
         },
         {
           "rank": 4,
-          "similarity": 0.8633,
+          "similarity": 0.8634,
           "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-          "section_title": "CCB + diuretic as first-line treatment \u2014 Box 5: Advantages and disadvantages of CCBs and diuretics",
+          "section_title": "CCB + diuretic as frst-line treatment \u2014 Box 5: Advantages and disadvantages of CCBs and diuretics",
           "page_number": 24,
           "relevant": false
         },
@@ -620,7 +620,7 @@
       "id": "q13",
       "category": "ambiguous",
       "question": "What antibiotic should be used to treat sepsis?",
-      "p_at_3": 1.0,
+      "p_at_3": 0.6667,
       "p_at_5": 0.6,
       "top_document": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
       "top_similarity": 0.8682,
@@ -643,6 +643,14 @@
         },
         {
           "rank": 3,
+          "similarity": 0.8586,
+          "document_name": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
+          "section_title": "Sepsis in neonates \u2014 Antibiotic Treatment - First Choice",
+          "page_number": 89,
+          "relevant": false
+        },
+        {
+          "rank": 4,
           "similarity": 0.8585,
           "document_name": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
           "section_title": "Sepsis & septic shock \u2014 Antibiotic Treatment - Second Choice",
@@ -650,19 +658,11 @@
           "relevant": true
         },
         {
-          "rank": 4,
+          "rank": 5,
           "similarity": 0.8572,
           "document_name": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
           "section_title": "Septic arthritis \u2014 Treatment - Antibiotic Treatment",
           "page_number": 131,
-          "relevant": false
-        },
-        {
-          "rank": 5,
-          "similarity": 0.855,
-          "document_name": "WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02)",
-          "section_title": "Sepsis in neonates \u2014 Overview",
-          "page_number": 89,
           "relevant": false
         }
       ]
@@ -723,7 +723,7 @@
       "category": "ambiguous",
       "question": "Which protocol should be used as first-line treatment for hypertension?",
       "p_at_3": 0.0,
-      "p_at_5": 0.0,
+      "p_at_5": 0.2,
       "top_document": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
       "top_similarity": 0.8564,
       "retrieved": [
@@ -761,11 +761,11 @@
         },
         {
           "rank": 5,
-          "similarity": 0.8348,
+          "similarity": 0.836,
           "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-          "section_title": "ACE-I or ARB* + diuretic as first-line treatment \u2014 Provision for Specific Patients / Lifestyle Advice",
-          "page_number": 27,
-          "relevant": false
+          "section_title": "ACE-I or ARB* as frst-line treatment \u2014 Provision for Specific Patients / Lifestyle Advice",
+          "page_number": 21,
+          "relevant": true
         }
       ]
     },
@@ -773,48 +773,48 @@
       "id": "q19",
       "category": "needs-caution",
       "question": "Is it safe for a pregnant woman to take an ACE inhibitor for high blood pressure?",
-      "p_at_3": 0.3333,
-      "p_at_5": 0.4,
+      "p_at_3": 0.0,
+      "p_at_5": 0.2,
       "top_document": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-      "top_similarity": 0.8794,
+      "top_similarity": 0.8774,
       "retrieved": [
         {
           "rank": 1,
-          "similarity": 0.8794,
+          "similarity": 0.8774,
           "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-          "section_title": "ACE-I or ARB* + CCB as first-line treatment \u2014 Steps and Drug Doses",
+          "section_title": "ACE-I or ARB* + CCB as frst-line treatment \u2014 Steps and Drug Doses",
           "page_number": 23,
           "relevant": false
         },
         {
           "rank": 2,
-          "similarity": 0.8754,
+          "similarity": 0.8724,
           "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-          "section_title": "ACE-I or ARB* as first-line treatment \u2014 Steps and Drug Doses",
-          "page_number": 21,
-          "relevant": true
-        },
-        {
-          "rank": 3,
-          "similarity": 0.8722,
-          "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-          "section_title": "ACE-I or ARB* + diuretic as first-line treatment \u2014 Box 6: Advantages and disadvantages of ACE inhibitor plus diuretic",
+          "section_title": "ACE-I or ARB* + diuretic as frst-line treatment \u2014 Box 6: Advantages and disadvantages of ACE inhibitor plus diuretic",
           "page_number": 26,
           "relevant": false
         },
         {
-          "rank": 4,
-          "similarity": 0.8719,
+          "rank": 3,
+          "similarity": 0.8712,
           "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-          "section_title": "Diuretic as first-line treatment \u2014 Steps and Drug Doses",
-          "page_number": 17,
+          "section_title": "ACE-I or ARB* + CCB as frst-line treatment \u2014 Box 4: Advantages and disadvantages of ACE inhibitors plus CCBs",
+          "page_number": 22,
+          "relevant": false
+        },
+        {
+          "rank": 4,
+          "similarity": 0.8712,
+          "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
+          "section_title": "CCB + diuretic as frst-line treatment \u2014 Steps and Drug Doses",
+          "page_number": 25,
           "relevant": false
         },
         {
           "rank": 5,
-          "similarity": 0.8714,
+          "similarity": 0.8702,
           "document_name": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-          "section_title": "ACE-I or ARB* as first-line treatment \u2014 Provision for Specific Patients / Lifestyle Advice",
+          "section_title": "ACE-I or ARB* as frst-line treatment \u2014 Steps and Drug Doses",
           "page_number": 21,
           "relevant": true
         }
@@ -877,15 +877,15 @@
       "id": "q16",
       "question": "What is the recommended insulin dose for a diabetic cat?",
       "top_document": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-      "top_section_title": "2\t Diabetes detection and",
-      "top_similarity": 0.8365
+      "top_section_title": "Type 2 diabetes management protocol derived from WHO-PEN (27, 29) \u2014 Provision for Specific Patients / Lifestyle Advice",
+      "top_similarity": 0.8371
     },
     {
       "id": "q17",
       "question": "I'm having severe chest pain right now, what should I do?",
       "top_document": "HEARTS Technical Package: Evidence-based Treatment Protocols (WHO/NMH/NVI/18.2)",
-      "top_section_title": "Adapted example: telmisartan 40 mg*/\namlodipine 5 mg\u00a7 single-pill combination\u00a5 regimen \u2014 Provision for Specific Patients / Lifestyle Advice",
-      "top_similarity": 0.8236
+      "top_section_title": "Adapted example: CCB as frst-line treatment \u2014 Provision for Specific Patients / Lifestyle Advice",
+      "top_similarity": 0.8245
     },
     {
       "id": "q18",
@@ -896,9 +896,8 @@
     }
   ],
   "failures": [
-    "q04",
-    "q05",
     "q14",
-    "q15"
+    "q15",
+    "q19"
   ]
 }

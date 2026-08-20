@@ -535,6 +535,8 @@ TRANSLATIONS = {
         "retrieval_confidence": "Retrieval confidence",
         "grounding_verdict": "Grounding verdict",
         "ai_provider": "AI provider",
+        "citation_accuracy": "Citation accuracy",
+        "unsupported_claims_label": "Unsupported claims flagged",
 
         "chat_placeholder": "Ask about any medication...",
         "request_failed": "❌ Request failed: {error}",
@@ -672,6 +674,8 @@ TRANSLATIONS = {
         "retrieval_confidence": "ثقة الاسترجاع",
         "grounding_verdict": "نتيجة التحقق من الأدلة",
         "ai_provider": "مزوّد الذكاء الاصطناعي",
+        "citation_accuracy": "دقة الاستشهادات",
+        "unsupported_claims_label": "أجزاء غير مدعومة بالكامل",
 
         "chat_placeholder": "اسأل عن أي دواء...",
         "request_failed": "❌ فشل الطلب: {error}",
@@ -1146,11 +1150,21 @@ def render_right_panel_conversation():
         retrieval_conf = confidence.get("retrieval_confidence", "n/a")
         grounding = confidence.get("grounding_verdict", "n/a")
         provider = entry.get("provider_used") or "n/a"
-        st.markdown(_flatten(f'''
+        citation_acc = confidence.get("citation_accuracy")
+        citation_acc_display = f"{citation_acc * 100:.0f}%" if citation_acc is not None else "n/a"
+        rows = f'''
         <div class="tk-metric-row"><span class="tk-metric-label">{t("retrieval_confidence")}</span><span class="tk-metric-value">{esc(str(retrieval_conf).capitalize())}</span></div>
         <div class="tk-metric-row"><span class="tk-metric-label">{t("grounding_verdict")}</span><span class="tk-metric-value">{esc(str(grounding).replace("_", " ").capitalize())}</span></div>
+        <div class="tk-metric-row"><span class="tk-metric-label">{t("citation_accuracy")}</span><span class="tk-metric-value">{esc(citation_acc_display)}</span></div>
         <div class="tk-metric-row"><span class="tk-metric-label">{t("ai_provider")}</span><span class="tk-metric-value">{esc(str(provider).capitalize())}</span></div>
-        '''), unsafe_allow_html=True)
+        '''
+        st.markdown(_flatten(rows), unsafe_allow_html=True)
+
+        unsupported = confidence.get("unsupported_claims") or []
+        if unsupported:
+            st.markdown(f"**{t('unsupported_claims_label')}**")
+            for claim in unsupported:
+                st.caption(f"⚠️ {claim}")
 
 
 def render_right_panel_summary():

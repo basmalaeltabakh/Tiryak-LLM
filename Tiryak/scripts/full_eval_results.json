@@ -1,0 +1,46 @@
+{
+  "summary": {
+    "questions_evaluated": 2,
+    "mean_p_at_3": 0.333,
+    "mean_p_at_5": 0.3,
+    "mean_faithfulness": 0.7,
+    "mean_answer_relevancy": 0.96,
+    "mean_context_relevancy": 0.975,
+    "mean_citation_accuracy": 0.5
+  },
+  "rows": [
+    {
+      "id": "q01",
+      "category": "direct",
+      "question": "What is the first-line antibiotic for pharyngitis?",
+      "p_at_3": 0.3333,
+      "p_at_5": 0.4,
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.97,
+      "context_relevancy": 1.0,
+      "citation_accuracy": 1.0,
+      "num_citations": 6,
+      "invalid_citations": [],
+      "provider_used": "gemini",
+      "answer": "The first-line antibiotics for pharyngitis are Amoxicillin or Phenoxymethylpenicillin. * Amoxicillin is recommended at 500 mg q8h orally for adults, or 80-90 mg/kg/day orally for pediatric patients [WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02), Page 14], [WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02), Section: Pharyngitis — Antibiotic Treatment - First Choice, Page 16].\n* Phenoxymethylpenicillin (as potassium) is recommended at 500 mg (800 000 IU) q6h orally for adults, or 10-15 mg/kg/dose (16 000-24 000 IU/kg/dose) q6-8h orally for pediatric patients [WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02), Page 14], [WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02), Section: Pharyngitis — Antibiotic Treatment - First Choice, Page 16].\n* These antibiotics are considered equal treatment options unless otherwise indicated [WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02), Page 14], [WHO AWaRe Antibiotic Book - Web Annex: Infographics (WHO/MHP/HPS/EML/2022.02), Section: Pharyngitis — Treatment - Antibiotic Treatment, Page 16]."
+    },
+    {
+      "id": "q02",
+      "category": "direct",
+      "question": "Is antibiotic treatment recommended for bronchitis?",
+      "p_at_3": 0.3333,
+      "p_at_5": 0.2,
+      "faithfulness": 0.4,
+      "answer_relevancy": 0.95,
+      "context_relevancy": 0.95,
+      "citation_accuracy": 0.0,
+      "num_citations": 2,
+      "invalid_citations": [
+        "[Source 1, Page 8]",
+        "[Source 3, Page 9]"
+      ],
+      "provider_used": "groq",
+      "answer": "Antibiotic therapy is not recommended for most cases of bronchitis. - The guidelines state that antibiotic treatment should be avoided because there is no evidence of a significant clinical benefit and there is a risk of side‑effects. - Symptomatic management with rest, fluids, and appropriate analgesics/antipyretics is the recommended approach. [Source 1, Page 8] [Source 3, Page 9]"
+    }
+  ]
+}

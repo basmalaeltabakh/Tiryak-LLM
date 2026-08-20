@@ -1,7 +1,8 @@
 from typing import List, Dict, Optional
 from app.rag.retriever import retrieve_relevant_chunks
 from app.rag.generator import generate_answer
-from app.rag.confidence import get_confidence_report
+from app.rag.confidence import get_confidence_report, compute_retrieval_confidence
+from app.rag.citation_validator import validate_citations
 from app.rag.language_utils import detect_language, translate_query_to_english
 from app.safety.guardrails import (
     classify_query_risk,
@@ -69,13 +70,34 @@ def answer_question_safely(
     if not relevant_chunks:
         return {**get_insufficient_evidence_response(language=language), "question": question}
 
-    result = generate_answer(question, relevant_chunks, user_type=user_type)
+    # Computed before generation (not just after) so the prompt itself can
+    # hedge its language to match how strong the evidence actually is,
+    # instead of confidence being a label attached after the fact that never
+    # influences the answer's wording.
+    pre_gen_confidence = compute_retrieval_confidence(relevant_chunks, distance_threshold=relevance_threshold)
+
+    result = generate_answer(
+        question, relevant_chunks, user_type=user_type, retrieval_confidence=pre_gen_confidence
+    )
 
     confidence = get_confidence_report(
         result["answer"], relevant_chunks, check_grounding=check_grounding, distance_threshold=relevance_threshold
     )
+    confidence.update(validate_citations(result["answer"], relevant_chunks))
 
     final_answer = result["answer"]
+
+    # Claim-level grounding is computed above but was previously only ever
+    # displayed, never acted on. Surface it: if the checker found a specific
+    # claim the sources don't actually support, say so instead of leaving the
+    # user to trust an unqualified answer.
+    if confidence.get("unsupported_claims"):
+        claims_list = "; ".join(confidence["unsupported_claims"][:3])
+        if language == "ar":
+            final_answer += f"\n\n⚠️ لاحظ: الجزء ده من الإجابة مش مدعوم بشكل كامل بالمصادر: {claims_list}"
+        else:
+            final_answer += f"\n\n⚠️ Note: the following part(s) of this answer aren't fully supported by the cited sources: {claims_list}"
+
     if risk.get("risk_level") == "needs_caution":
         caveat = (
             "\n\n⚠️ السؤال ده خاص بحالة معينة — يفضل تتأكد مع صيدلي أو دكتور قبل ما تتصرف بناءً عليه."

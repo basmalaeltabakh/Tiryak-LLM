@@ -4,7 +4,25 @@ from app.rag.llm_provider import generate_content
 from app.rag.language_utils import detect_language
 
 
-def build_context_prompt(query: str, chunks: List[Dict], user_type: str = "pharmacist") -> str:
+CONFIDENCE_LANGUAGE_INSTRUCTIONS = {
+    "high": "",  # normal tone — evidence is a strong match, no extra hedging needed
+    "medium": (
+        "8. The retrieved evidence is a MODERATE match for this question — hedge appropriately: use phrasing "
+        "like \"the guideline indicates...\" rather than flatly asserting facts, and note if a source only "
+        "partially addresses the question.\n"
+    ),
+    "low": (
+        "8. The retrieved evidence is a WEAK match for this question — you must hedge explicitly. Open with a "
+        "caveat that the available sources only touch on this indirectly / cover it incompletely, before giving "
+        "whatever partial information they do support. Do not state anything with more confidence than the "
+        "evidence actually warrants.\n"
+    ),
+}
+
+
+def build_context_prompt(
+    query: str, chunks: List[Dict], user_type: str = "pharmacist", retrieval_confidence: str = "high"
+) -> str:
     context_blocks = []
     for i, chunk in enumerate(chunks, start=1):
         source_label = f"Document: {chunk['filename']}, Page {chunk['page_number']}"
@@ -54,8 +72,9 @@ def build_context_prompt(query: str, chunks: List[Dict], user_type: str = "pharm
 1. Only use information from the provided sources. Do not use outside knowledge.
 2. If the sources don't contain enough information to answer, say so clearly instead of guessing.
 3. If the sources simply don't mention the specific drug, combination, or condition asked about, that is NOT evidence that no interaction/risk exists. Never phrase this as a clinical finding (e.g. "there is no interaction"). State plainly that the available sources don't address it.
-4. After each claim in your answer, cite the source using this format: [Document Name, Page X].
+4. After each claim in your answer, cite the source using this EXACT format: [Document Name, Page X] if the source has no section, or [Document Name, Section: Y, Page X] if it does — copy the document name, section, and page number directly from the "[Source N - ...]" label above each excerpt. Never invent a page number or cite a page that isn't in the sources above. Do NOT cite using just "[Source N]" or "[Source N, Page X]" — the document name must always be spelled out so the citation is readable on its own without cross-referencing the source list.
 5. {language_instruction}6. {audience_instruction}{multi_doc_instruction}7. Structure your answer like this: start with a short 1-2 sentence direct answer, then (if useful) a few bullet points with specifics. Keep it concise and scannable — do NOT use multiple headers or long dense paragraphs. Do NOT use Markdown tables under any circumstances.
+{CONFIDENCE_LANGUAGE_INSTRUCTIONS.get(retrieval_confidence, "")}
 
 Sources:
 {context_text}
@@ -66,7 +85,13 @@ Answer:"""
     return prompt
 
 
-def generate_answer(query: str, chunks: List[Dict], preferred_provider: str = None, user_type: str = "pharmacist") -> Dict:
+def generate_answer(
+    query: str,
+    chunks: List[Dict],
+    preferred_provider: str = None,
+    user_type: str = "pharmacist",
+    retrieval_confidence: str = "high",
+) -> Dict:
     if not chunks:
         language = detect_language(query)
         no_info_msg = (
@@ -76,7 +101,7 @@ def generate_answer(query: str, chunks: List[Dict], preferred_provider: str = No
         )
         return {"answer": no_info_msg, "sources": [], "provider_used": None}
 
-    prompt = build_context_prompt(query, chunks, user_type=user_type)
+    prompt = build_context_prompt(query, chunks, user_type=user_type, retrieval_confidence=retrieval_confidence)
 
     try:
         result = generate_content(prompt, preferred_provider=preferred_provider)

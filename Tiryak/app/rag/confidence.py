@@ -1,3 +1,4 @@
+import json
 from typing import List, Dict
 from fastapi import HTTPException
 from app.rag.llm_provider import generate_content
@@ -25,17 +26,24 @@ def compute_retrieval_confidence(
         return "low"
 
 
-def verify_answer_grounding(answer: str, chunks: List[Dict]) -> str:
+def verify_answer_grounding(answer: str, chunks: List[Dict]) -> Dict:
     """
-    Asks the LLM to double-check whether the generated answer is actually
-    supported by the source chunks, as a second-pass sanity check.
-    Returns one of: "grounded", "partially_grounded", "not_grounded".
+    Claim-level grounding check: asks the LLM to identify which specific
+    sentences/claims in the answer (if any) are NOT supported by the source
+    chunks, rather than only a single whole-answer verdict. A whole-answer
+    "partially_grounded" label is not actionable on its own — this makes it
+    possible to actually flag or act on the specific unsupported part
+    (see app/rag/pipeline.py, which appends a caveat naming the unsupported
+    claim rather than just displaying an opaque verdict).
+
+    Returns {"verdict": "grounded"|"partially_grounded"|"not_grounded",
+             "unsupported_claims": [str, ...]}  (empty list when fully grounded)
     """
     context_text = "\n\n".join(
         f"[Page {c['page_number']}]\n{c['text']}" for c in chunks
     )
 
-    verification_prompt = f"""You are verifying whether an answer is factually supported by the given sources.
+    verification_prompt = f"""You are verifying whether an answer is factually supported by the given sources, claim by claim.
 
 Sources:
 {context_text}
@@ -43,7 +51,12 @@ Sources:
 Answer to verify:
 {answer}
 
-Respond with exactly one word: "grounded" if the answer is fully supported by the sources, "partially_grounded" if only some of it is supported, or "not_grounded" if it isn't supported at all."""
+Identify any specific sentence or claim in the answer that is NOT directly supported by the sources above (ignore boilerplate like safety disclaimers). Return ONLY a valid JSON object (no markdown, no explanation outside the JSON):
+{{"unsupported_claims": ["<exact unsupported sentence or claim>", ...], "verdict": "grounded" | "partially_grounded" | "not_grounded"}}
+
+If every claim is supported, return an empty list and "grounded".
+
+JSON output:"""
 
     try:
         result = generate_content(verification_prompt)
@@ -53,16 +66,33 @@ Respond with exactly one word: "grounded" if the answer is fully supported by th
             detail=f"All AI providers are currently unavailable. Please try again later. ({str(e)})"
         )
 
-    verdict = result["text"].strip().lower()
+    text = result["text"].strip()
+    if text.startswith("```"):
+        text = text.split("```")[1]
+        if text.startswith("json"):
+            text = text[4:]
+        text = text.strip()
 
-    if "not_grounded" in verdict:
-        return "not_grounded"
-    elif "partially_grounded" in verdict:
-        return "partially_grounded"
-    elif "grounded" in verdict:
-        return "grounded"
-    else:
-        return "partially_grounded"
+    try:
+        parsed = json.loads(text)
+        verdict = parsed.get("verdict", "partially_grounded")
+        if verdict not in ("grounded", "partially_grounded", "not_grounded"):
+            verdict = "partially_grounded"
+        unsupported = parsed.get("unsupported_claims") or []
+        return {"verdict": verdict, "unsupported_claims": unsupported}
+    except json.JSONDecodeError:
+        # Fall back to a coarse keyword read of the raw text rather than
+        # failing the whole request over a formatting slip.
+        low = text.lower()
+        if "not_grounded" in low:
+            verdict = "not_grounded"
+        elif "partially_grounded" in low:
+            verdict = "partially_grounded"
+        elif "grounded" in low:
+            verdict = "grounded"
+        else:
+            verdict = "partially_grounded"
+        return {"verdict": verdict, "unsupported_claims": []}
 
 
 def get_confidence_report(
@@ -79,11 +109,15 @@ def get_confidence_report(
     retrieval_confidence = compute_retrieval_confidence(chunks, distance_threshold=distance_threshold)
 
     if check_grounding:
-        grounding_verdict = verify_answer_grounding(answer, chunks)
+        grounding = verify_answer_grounding(answer, chunks)
+        grounding_verdict = grounding["verdict"]
+        unsupported_claims = grounding["unsupported_claims"]
     else:
         grounding_verdict = "not_checked"
+        unsupported_claims = []
 
     return {
         "retrieval_confidence": retrieval_confidence,
-        "grounding_verdict": grounding_verdict
+        "grounding_verdict": grounding_verdict,
+        "unsupported_claims": unsupported_claims,
     }

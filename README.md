@@ -378,6 +378,7 @@ And the other side: *"I'm having severe chest pain right now, what should I do?"
 
 ## Team
 
-- **Basmala Saeed**
-- **Tahany Emad**
+- **[Basmala Saeed](https://github.com/basmalaeltabakh)**
+- **[Tahany Emad](https://github.com/Tahanyemad16)**
+- **[Merhan Medhat](https://github.com/merhanmedhat2006-max)**
 
